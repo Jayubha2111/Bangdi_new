@@ -1,107 +1,116 @@
-"use client";
-import { useState } from "react";
+'use client';
+
+import { useState, useEffect } from 'react';
 
 const reviews = [
   {
-    name: "Priya Mehta",
-    location: "Mumbai",
+    text: 'The emerald bangdi set I ordered for my wedding was absolutely breathtaking. Every guest complimented them. The gold shimmer is even more stunning in person — it caught the light beautifully in every photograph.',
+    author: 'Ananya Sharma',
+    city: 'Mumbai',
+    product: 'Royal Emerald Set',
     rating: 5,
-    text: "I wore the Emerald Rani Kada at my cousin's wedding — every single guest asked where I got them. The quality is extraordinary for the price. The gold plating feels incredibly thick and genuine.",
-    product: "Emerald Rani Kada",
   },
   {
-    name: "Ananya Sharma",
-    location: "Jaipur",
+    text: 'I have never owned jewelry that feels so substantial yet delicate at the same time. The craftsmanship is evident in every detail. My Bridal Haath Phool was the talk of my sangeet ceremony.',
+    author: 'Priya Mehta',
+    city: 'Delhi',
+    product: 'Bridal Haath Phool',
     rating: 5,
-    text: "The Royal Emerald Set is everything I dreamed of. The stones catch light in the most magical way. Arrived in the most gorgeous gift box — already planning to order the Bridal Haath Phool set!",
-    product: "Royal Emerald Set",
   },
   {
-    name: "Ritika Bose",
-    location: "Kolkata",
+    text: 'Three years since I purchased my Emerald Rani Kada and it looks as brilliant as day one. The lifetime polish service is genuine — they restored it to its original glory within a week.',
+    author: 'Ritu Verma',
+    city: 'Jaipur',
+    product: 'Emerald Rani Kada',
     rating: 5,
-    text: "I've bought bangles from all over India. Shringaar is in a different league entirely. The custom sizing was perfect and the craftsmanship rivals pieces I've seen at double the price.",
-    product: "Kundan Emerald Bangle",
   },
   {
-    name: "Deepa Nair",
-    location: "Chennai",
+    text: 'Ordered the festive set for Diwali and was blown away by the packaging alone. The emeralds are a rich, deep green — exactly what I wanted. My mother-in-law immediately asked where I got them.',
+    author: 'Kavita Reddy',
+    city: 'Bangalore',
+    product: 'Festive Bangdi Set 12pc',
     rating: 5,
-    text: "Bought the Festive Bangdi Set for Diwali and I cannot stop wearing them. The colour is so rich and vivid. Customer service was also impeccable — they helped me choose the right size.",
-    product: "Festive Bangdi Set",
   },
 ];
 
+const StarRating = () => (
+  <div className="flex gap-1 justify-center">
+    {[1, 2, 3, 4, 5].map((i) => (
+      <svg key={i} width="20" height="20" viewBox="0 0 20 20" fill="#ef2a28" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 0L12.25 7.75L20 10L12.25 12.25L10 20L7.75 12.25L0 10L7.75 7.75L10 0Z" />
+      </svg>
+    ))}
+  </div>
+);
+
 export default function Testimonials() {
-  const [active, setActive] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [animating, setAnimating] = useState(false);
+
+  const switchReview = (i: number) => {
+    if (i === activeIndex || animating) return;
+    setAnimating(true);
+    setTimeout(() => {
+      setActiveIndex(i);
+      setAnimating(false);
+    }, 300);
+  };
+
+  const r = reviews[activeIndex];
 
   return (
-    <section className="py-28 px-6 lg:px-12" style={{ background: "#0a0a0a" }}>
-      <div className="max-w-5xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-4 mb-5">
-            <div className="divider-gold w-12" />
-            <span className="font-accent text-[10px] tracking-[0.45em] text-[#d4a017] uppercase">Testimonials</span>
-            <div className="divider-gold w-12" />
-          </div>
-          <h2 className="font-display text-5xl font-bold text-[#f5f0e8]">
-            Worn with{" "}
-            <span className="italic gold-shimmer">Love</span>
-          </h2>
-        </div>
+    <section className="py-20 md:py-28 bg-dark-surface relative overflow-hidden">
+      {/* Decorative background glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,_rgba(239,42,40,0.06)_0%,_transparent_70%)] pointer-events-none" />
 
-        {/* Main review */}
-        <div
-          className="border border-[#1e1e1e] bg-[#111111] p-10 md:p-14 mb-8 relative overflow-hidden"
-          key={active}
-          style={{ animation: "fadeIn 0.5s ease forwards" }}
-        >
-          {/* Decorative quote mark */}
-          <div
-            className="absolute top-6 right-8 font-display text-9xl text-[#d4a01710] leading-none select-none"
-            aria-hidden
-          >
-            "
-          </div>
-
-          {/* Stars */}
-          <div className="flex gap-1 mb-6">
-            {[...Array(reviews[active].rating)].map((_, i) => (
-              <span key={i} className="text-[#d4a017] text-lg">★</span>
-            ))}
-          </div>
-
-          {/* Text */}
-          <p className="font-body text-xl md:text-2xl text-[#c5b89a] leading-relaxed mb-8 italic font-light">
-            "{reviews[active].text}"
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+        <div className="text-center mb-12">
+          <p className="font-accent text-red-500 text-xs tracking-[0.3em] uppercase mb-4">
+            Testimonials
           </p>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">
+            Voices of <span className="text-red-shimmer">Our Brides</span>
+          </h2>
+          <div className="divider-gold w-24 mx-auto mt-4" />
+        </div>
 
-          {/* Author */}
-          <div className="flex items-center justify-between flex-wrap gap-4">
-            <div>
-              <div className="font-accent text-sm tracking-widest text-[#d4a017] uppercase">{reviews[active].name}</div>
-              <div className="font-body text-xs text-[#5a4a3a] mt-0.5">{reviews[active].location}</div>
-            </div>
-            <div className="font-accent text-[10px] tracking-[0.2em] text-[#3a2a1a] bg-[#1a1508] border border-[#2a1e08] px-3 py-1.5 uppercase">
-              {reviews[active].product}
-            </div>
+        {/* Quote card */}
+        <div className="relative bg-dark-card border border-dark-border rounded-xl p-8 md:p-12 text-center mb-10">
+          {/* Decorative quote mark */}
+          <div className="absolute top-4 left-6 md:top-6 md:left-8 pointer-events-none">
+            <svg width="48" height="40" viewBox="0 0 60 48" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 48V28L8 0H20L16 24H28V48H0ZM32 48V28L40 0H52L48 24H60V48H32Z" fill="#ef2a28" opacity="0.15" />
+            </svg>
+          </div>
+
+          <div className={`transition-opacity duration-300 ${animating ? 'opacity-0' : 'opacity-100'}`}>
+            <StarRating />
+
+            <p className="font-body italic text-xl md:text-2xl text-gray-200 leading-relaxed my-6 md:my-8 max-w-2xl mx-auto">
+              &ldquo;{r.text}&rdquo;
+            </p>
+
+            <p className="font-display text-white text-lg font-semibold">{r.author}</p>
+            <p className="font-body text-gray-400 text-sm mb-2">{r.city}</p>
+            <span className="inline-block font-accent text-[10px] tracking-[0.15em] uppercase text-red-500 bg-dark-surface border border-dark-border px-3 py-1 rounded">
+              {r.product}
+            </span>
           </div>
         </div>
 
-        {/* Pagination dots */}
-        <div className="flex items-center justify-center gap-3">
-          {reviews.map((r, i) => (
+        {/* Reviewer selector */}
+        <div className="flex flex-wrap justify-center gap-3">
+          {reviews.map((review, i) => (
             <button
-              key={r.name}
-              onClick={() => setActive(i)}
-              className={`transition-all duration-300 font-accent text-[10px] tracking-widest uppercase px-4 py-2 border ${
-                active === i
-                  ? "border-[#d4a017] text-[#d4a017]"
-                  : "border-[#2a2a2a] text-[#3a2a1a] hover:border-[#5a4a2a]"
+              key={i}
+              onClick={() => switchReview(i)}
+              className={`font-accent text-xs tracking-[0.1em] uppercase px-4 py-2.5 rounded transition-all duration-300 ${
+                i === activeIndex
+                  ? 'bg-red-500 text-white font-semibold'
+                  : 'bg-dark-card border border-dark-border text-gray-400 hover:text-red-500 hover:border-red-500/50'
               }`}
             >
-              {r.name.split(" ")[0]}
+              {review.author.split(' ')[0]}
             </button>
           ))}
         </div>

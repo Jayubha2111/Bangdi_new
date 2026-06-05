@@ -1,121 +1,108 @@
-"use client";
+'use client';
 
 const steps = [
   {
-    num: "01",
-    title: "Master Design",
-    desc: "Each design begins as a hand-drawn sketch by our master craftsmen, inspired by Mughal motifs and modern luxury aesthetics.",
-    icon: "✦",
+    num: '01',
+    title: 'Master Design',
+    desc: 'Our master artisans sketch each piece by hand, drawing from centuries-old Mughal and Rajasthani design traditions, then digitize for precision.',
   },
   {
-    num: "02",
-    title: "Stone Selection",
-    desc: "Only the finest emerald glass crystals and semi-precious stones are hand-selected for brilliance, colour, and cut uniformity.",
-    icon: "◈",
+    num: '02',
+    title: 'Stone Selection',
+    desc: 'Only grade-A emeralds from Zambian and Colombian mines are hand-selected for their deep green hue, clarity, and natural brilliance.',
   },
   {
-    num: "03",
-    title: "Gold Plating",
-    desc: "Our brass base undergoes a 6-layer 24-karat gold electroplating process for deep, lasting lustre that won't tarnish.",
-    icon: "◆",
+    num: '03',
+    title: 'Gold Plating',
+    desc: 'Each bangle receives 22K gold plating through a multi-layer electroforming process, ensuring a rich, lasting lustre that never fades.',
   },
   {
-    num: "04",
-    title: "Hand Setting",
-    desc: "Every stone is individually hand-set by artisans with 20+ years of experience, ensuring perfect alignment and secure seating.",
-    icon: "❋",
+    num: '04',
+    title: 'Hand Setting',
+    desc: 'Every gem is individually set by skilled craftsmen using traditional kundan and pave techniques, secured with precision-cut prongs.',
   },
+];
+
+const features = [
+  { icon: '✨', label: 'Lifetime Polish' },
+  { icon: '✓', label: 'BIS Certified' },
+  { icon: '📏', label: 'Custom Sizing' },
+  { icon: '🎁', label: 'Gift Wrapping' },
 ];
 
 export default function Craftsmanship() {
   return (
-    <section
-      id="craftsmanship"
-      className="relative py-28 px-6 lg:px-12 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #0a0a0a 0%, #0c1510 50%, #0a0a0a 100%)" }}
-    >
-      {/* Decorative background */}
-      <div
-        className="absolute inset-0 opacity-5 pointer-events-none"
-        style={{
-          backgroundImage: `
-            repeating-linear-gradient(0deg, transparent, transparent 60px, #d4a01718 60px, #d4a01718 61px),
-            repeating-linear-gradient(90deg, transparent, transparent 60px, #d4a01718 60px, #d4a01718 61px)
-          `,
+    <section id="craftsmanship" className="py-20 md:py-28 bg-dark relative">
+      {/* Grid background pattern */}
+      <div className="absolute inset-0 pointer-events-none opacity-30"
+        dangerouslySetInnerHTML={{
+          __html: `<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+            <defs>
+              <pattern id="craftGrid" width="60" height="60" patternUnits="userSpaceOnUse">
+                <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#ef2a28" stroke-width="0.3" opacity="0.08"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#craftGrid)"/>
+          </svg>`
         }}
       />
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left — text */}
-          <div>
-            <div className="flex items-center gap-4 mb-6">
-              <div className="divider-gold w-12" />
-              <span className="font-accent text-[10px] tracking-[0.45em] text-[#d4a017] uppercase">Our Process</span>
-            </div>
-            <h2 className="font-display text-5xl md:text-6xl font-bold text-[#f5f0e8] mb-6 leading-tight">
-              The Art of{" "}
-              <span className="italic gold-shimmer">Craftsmanship</span>
-            </h2>
-            <p className="font-body text-lg text-[#8a7a6a] mb-8 leading-relaxed font-light">
-              Every Shringaar bangdi carries within it the legacy of generations. Our artisans, based in the jewellery
-              capital of Rajasthan, have been perfecting this craft for over a quarter century.
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center mb-14">
+          <p className="font-accent text-red-500 text-xs tracking-[0.3em] uppercase mb-4">
+            Our Craftsmanship
+          </p>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">
+            Mastery in <span className="text-red-shimmer">Every Detail</span>
+          </h2>
+          <div className="divider-gold w-24 mx-auto mt-4" />
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          {/* Left: Text */}
+          <div className="animate-fadeIn">
+            <p className="font-body text-gray-300 text-lg leading-relaxed mb-6">
+              At DHAGAJI , every bangdi is born from a legacy of master craftsmanship that spans four generations. Our atelier in Jaipur&apos;s historic gem district has been creating heirloom-quality emerald and gold bangles since 1998.
             </p>
-            <p className="font-body text-base text-[#6a5a4a] mb-10 leading-relaxed font-light">
-              We use only conflict-free materials, ethically sourced and processed in our family-owned workshop.
-              No two pieces are identical — each one holds its own soul.
+            <p className="font-body text-gray-400 text-lg leading-relaxed mb-8">
+              We combine ancient hand-tooling techniques with modern precision to craft pieces that are as durable as they are beautiful. Each bangle passes through the hands of twelve master artisans before it reaches you.
             </p>
-            <a href="#collection" className="btn-gold inline-block">
-              Discover the Pieces
+            <a
+              href="#contact"
+              className="btn-gold inline-block px-8 py-3.5 text-xs tracking-[0.15em] rounded uppercase"
+            >
+              Visit Our Studio
             </a>
           </div>
 
-          {/* Right — steps */}
-          <div className="space-y-6">
-            {steps.map((step, i) => (
+          {/* Right: Process steps */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {steps.map((step) => (
               <div
                 key={step.num}
-                className="flex gap-5 p-6 border border-[#1e1e1e] bg-[#111111] hover:border-[#d4a01740] transition-all duration-300 group"
-                style={{ animationDelay: `${i * 0.1}s` }}
+                className="process-step bg-dark-card border border-dark-border rounded-lg p-5 md:p-6 group transition-all duration-300"
               >
-                {/* Number */}
-                <div className="flex-shrink-0 w-14 h-14 flex items-center justify-center border border-[#2a2a2a] group-hover:border-[#d4a017] transition-colors">
-                  <span className="font-accent text-sm text-[#d4a017] tracking-widest">{step.num}</span>
-                </div>
-                {/* Content */}
-                <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-[#d4a017] text-sm">{step.icon}</span>
-                    <h3 className="font-display text-lg font-semibold text-[#f0e8d8] group-hover:text-[#d4a017] transition-colors">
-                      {step.title}
-                    </h3>
-                  </div>
-                  <p className="font-body text-sm text-[#7a6a5a] leading-relaxed font-light">{step.desc}</p>
-                </div>
+                <span className="font-accent text-red-500 text-3xl font-bold block mb-2">{step.num}</span>
+                <h3 className="font-accent text-white text-sm tracking-[0.1em] uppercase mb-2">{step.title}</h3>
+                <p className="font-body text-gray-400 text-sm leading-relaxed">{step.desc}</p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Horizontal divider */}
-        <div className="my-24 divider-gold" />
-
         {/* Features strip */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          {[
-            { icon: "♾", label: "Lifetime Polish", sub: "Free touch-up guarantee" },
-            { icon: "✦", label: "BIS Certified", sub: "Hallmarked gold plating" },
-            { icon: "◈", label: "Custom Sizing", sub: "Made to your measure" },
-            { icon: "❦", label: "Gift Wrapping", sub: "Luxury box included" },
-          ].map((f) => (
-            <div key={f.label} className="group">
-              <div className="text-4xl mb-3 text-[#d4a017] group-hover:scale-110 transition-transform inline-block">
-                {f.icon}
+        <div className="mt-16 pt-10 border-t border-dark-border">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {features.map((f) => (
+              <div
+                key={f.label}
+                className="feature-icon-wrap flex items-center gap-3 bg-dark-card border border-dark-border rounded-lg px-4 py-3 md:px-5 md:py-4"
+              >
+                <span className="text-gold-500 text-lg">{f.icon}</span>
+                <span className="font-accent text-gray-300 text-xs tracking-[0.1em] uppercase">{f.label}</span>
               </div>
-              <div className="font-accent text-sm tracking-widest text-[#c5b89a] uppercase mb-1">{f.label}</div>
-              <div className="font-body text-xs text-[#5a4a3a]">{f.sub}</div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
