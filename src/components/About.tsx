@@ -9,13 +9,13 @@ const values = [
 
 export default function About() {
   return (
-    <section id="about" className="py-20 md:py-28 bg-dark relative overflow-hidden">
+    <section id="about" className="py-20 md:py-28 bg-gray-50 dark:bg-dark relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <p className="font-accent text-red-500 text-xs tracking-[0.3em] uppercase mb-4">
             About DHAGAJI 
           </p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             A Legacy of <span className="text-red-shimmer">Grace</span>
           </h2>
           <div className="divider-gold w-24 mx-auto mt-4" />
@@ -75,15 +75,15 @@ export default function About() {
 
               {/* Floating stat badges */}
               <div className="absolute top-2 left-0 animate-fadeIn delay-200">
-                <div className="bg-dark-card/90 backdrop-blur-sm border border-dark-border rounded-lg px-4 py-2">
+                <div className="bg-white/90 dark:bg-dark-card/90 backdrop-blur-sm border border-gray-200 dark:border-dark-border rounded-lg px-4 py-2">
                   <div className="stat-value font-accent text-lg font-bold">500+</div>
-                  <div className="font-body text-gray-400 text-xs">Designs</div>
+                  <div className="font-body text-gray-600 dark:text-gray-400 text-xs">Designs</div>
                 </div>
               </div>
               <div className="absolute bottom-2 right-0 animate-fadeIn delay-300">
-                <div className="bg-dark-card/90 backdrop-blur-sm border border-dark-border rounded-lg px-4 py-2">
+                <div className="bg-white/90 dark:bg-dark-card/90 backdrop-blur-sm border border-gray-200 dark:border-dark-border rounded-lg px-4 py-2">
                   <div className="stat-value font-accent text-lg font-bold">15K+</div>
-                  <div className="font-body text-gray-400 text-xs">Customers</div>
+                  <div className="font-body text-gray-600 dark:text-gray-400 text-xs">Customers</div>
                 </div>
               </div>
 
@@ -103,10 +103,10 @@ export default function About() {
 
           {/* Right: Brand story */}
           <div>
-            <p className="font-body text-gray-300 text-lg leading-relaxed mb-6">
+            <p className="font-body text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-6">
               For over twenty-five years, DHAGAJI  has been the name synonymous with exquisite emerald and gold bangdi craftsmanship. What began as a small family workshop in the Pink City has grown into a beloved brand trusted by brides across India and the diaspora.
             </p>
-            <p className="font-body text-gray-400 text-lg leading-relaxed mb-8">
+            <p className="font-body text-gray-600 dark:text-gray-400 text-lg leading-relaxed mb-8">
               Every DHAGAJI  piece tells a story — of the artisan who shaped it, the stone that was perfectly cut, and the tradition that lives on through each generation of wearers.
             </p>
 
@@ -118,7 +118,7 @@ export default function About() {
                     <circle cx="9" cy="9" r="9" fill="#ef2a28" />
                     <path d="M5 9L8 12L13 6" stroke="#0a0a0a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
-                  <span className="font-body text-gray-300 text-base">{v}</span>
+                  <span className="font-body text-gray-700 dark:text-gray-300 text-base">{v}</span>
                 </div>
               ))}
             </div>

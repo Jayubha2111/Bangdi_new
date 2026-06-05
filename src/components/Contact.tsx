@@ -109,13 +109,13 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-28 bg-dark-surface">
+    <section id="contact" className="py-20 md:py-28 bg-gray-50 dark:bg-dark-surface">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <p className="font-accent text-red-500 text-xs tracking-[0.3em] uppercase mb-4">
             Get in Touch
           </p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             Begin Your <span className="text-red-shimmer">Bridal Journey</span>
           </h2>
           <div className="divider-gold w-24 mx-auto mt-4" />
@@ -125,7 +125,7 @@ export default function Contact() {
           {/* Left: Form */}
           <div>
             {submitted ? (
-              <div className="h-full flex flex-col items-center justify-center bg-dark-card border border-dark-border rounded-xl p-10 text-center">
+              <div className="h-full flex flex-col items-center justify-center bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-xl p-10 text-center">
                 <div style={{ animation: 'starSpin 0.8s ease-out' }}>
                   <svg width="48" height="48" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M16 0L19.6 11.2L32 12.4L22.8 21.2L25.6 34L16 26.8L6.4 34L9.2 21.2L0 12.4L12.4 11.2L16 0Z" fill="#ef2a28" />
@@ -150,7 +150,7 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full bg-dark-card border border-dark-border rounded-lg px-4 py-3.5 font-body text-white text-base placeholder-gray-500 input-gold transition-all"
+                    className="w-full bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-lg px-4 py-3.5 font-body text-gray-900 dark:text-white text-base placeholder-gray-400 dark:placeholder-gray-500 input-gold transition-all"
                     placeholder="Your full name"
                   />
                 </div>
@@ -163,7 +163,7 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full bg-dark-card border border-dark-border rounded-lg px-4 py-3.5 font-body text-white text-base placeholder-gray-500 input-gold transition-all"
+                    className="w-full bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-lg px-4 py-3.5 font-body text-gray-900 dark:text-white text-base placeholder-gray-400 dark:placeholder-gray-500 input-gold transition-all"
                     placeholder="your@email.com"
                   />
                 </div>
@@ -176,7 +176,7 @@ export default function Contact() {
                     value={formData.phone}
                     onChange={handleChange}
                     required
-                    className="w-full bg-dark-card border border-dark-border rounded-lg px-4 py-3.5 font-body text-white text-base placeholder-gray-500 input-gold transition-all"
+                    className="w-full bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-lg px-4 py-3.5 font-body text-gray-900 dark:text-white text-base placeholder-gray-400 dark:placeholder-gray-500 input-gold transition-all"
                     placeholder="+91 98765 43210"
                   />
                 </div>
@@ -189,7 +189,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     rows={4}
-                    className="w-full bg-dark-card border border-dark-border rounded-lg px-4 py-3.5 font-body text-white text-base placeholder-gray-500 input-gold transition-all resize-none"
+                    className="w-full bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-lg px-4 py-3.5 font-body text-gray-900 dark:text-white text-base placeholder-gray-400 dark:placeholder-gray-500 input-gold transition-all resize-none"
                     placeholder="Tell us about your vision..."
                   />
                 </div>
@@ -208,10 +208,10 @@ export default function Contact() {
           {/* Right: Info cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 content-start">
             {contactInfo.map((info, i) => (
-              <div key={i} className="bg-dark-card border border-dark-border rounded-lg p-5 md:p-6 card-glow">
+              <div key={i} className="bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-lg p-5 md:p-6 card-glow">
                 <div className="mb-3">{info.icon}</div>
-                <h4 className="font-accent text-white text-xs tracking-[0.15em] uppercase mb-1">{info.label}</h4>
-                <p className="font-body text-gray-400 text-sm leading-relaxed">{info.value}</p>
+                <h4 className="font-accent text-gray-900 dark:text-white text-xs tracking-[0.15em] uppercase mb-1">{info.label}</h4>
+                <p className="font-body text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{info.value}</p>
               </div>
             ))}
           </div>

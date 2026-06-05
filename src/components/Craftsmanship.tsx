@@ -32,7 +32,7 @@ const features = [
 
 export default function Craftsmanship() {
   return (
-    <section id="craftsmanship" className="py-20 md:py-28 bg-dark relative">
+    <section id="craftsmanship" className="py-20 md:py-28 bg-white dark:bg-dark relative">
       {/* Grid background pattern */}
       <div className="absolute inset-0 pointer-events-none opacity-30"
         dangerouslySetInnerHTML={{
@@ -52,7 +52,7 @@ export default function Craftsmanship() {
           <p className="font-accent text-red-500 text-xs tracking-[0.3em] uppercase mb-4">
             Our Craftsmanship
           </p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             Mastery in <span className="text-red-shimmer">Every Detail</span>
           </h2>
           <div className="divider-gold w-24 mx-auto mt-4" />
@@ -61,10 +61,10 @@ export default function Craftsmanship() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Left: Text */}
           <div className="animate-fadeIn">
-            <p className="font-body text-gray-300 text-lg leading-relaxed mb-6">
+            <p className="font-body text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-6">
               At DHAGAJI , every bangdi is born from a legacy of master craftsmanship that spans four generations. Our atelier in Jaipur&apos;s historic gem district has been creating heirloom-quality emerald and gold bangles since 1998.
             </p>
-            <p className="font-body text-gray-400 text-lg leading-relaxed mb-8">
+            <p className="font-body text-gray-600 dark:text-gray-400 text-lg leading-relaxed mb-8">
               We combine ancient hand-tooling techniques with modern precision to craft pieces that are as durable as they are beautiful. Each bangle passes through the hands of twelve master artisans before it reaches you.
             </p>
             <a
@@ -80,26 +80,26 @@ export default function Craftsmanship() {
             {steps.map((step) => (
               <div
                 key={step.num}
-                className="process-step bg-dark-card border border-dark-border rounded-lg p-5 md:p-6 group transition-all duration-300"
+                className="process-step bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-lg p-5 md:p-6 group transition-all duration-300"
               >
                 <span className="font-accent text-red-500 text-3xl font-bold block mb-2">{step.num}</span>
-                <h3 className="font-accent text-white text-sm tracking-[0.1em] uppercase mb-2">{step.title}</h3>
-                <p className="font-body text-gray-400 text-sm leading-relaxed">{step.desc}</p>
+                <h3 className="font-accent text-gray-900 dark:text-white text-sm tracking-[0.1em] uppercase mb-2">{step.title}</h3>
+                <p className="font-body text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{step.desc}</p>
               </div>
             ))}
           </div>
         </div>
 
         {/* Features strip */}
-        <div className="mt-16 pt-10 border-t border-dark-border">
+        <div className="mt-16 pt-10 border-t border-gray-200 dark:border-dark-border">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {features.map((f) => (
               <div
                 key={f.label}
-                className="feature-icon-wrap flex items-center gap-3 bg-dark-card border border-dark-border rounded-lg px-4 py-3 md:px-5 md:py-4"
+                className="feature-icon-wrap flex items-center gap-3 bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-lg px-4 py-3 md:px-5 md:py-4"
               >
-                <span className="text-gold-500 text-lg">{f.icon}</span>
-                <span className="font-accent text-gray-300 text-xs tracking-[0.1em] uppercase">{f.label}</span>
+                <span className="text-lg">{f.icon}</span>
+                <span className="font-accent text-gray-700 dark:text-gray-300 text-xs tracking-[0.1em] uppercase">{f.label}</span>
               </div>
             ))}
           </div>

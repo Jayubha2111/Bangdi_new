@@ -37,7 +37,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-dark-card border-t border-dark-border pt-16 pb-8">
+    <footer className="bg-gray-50 dark:bg-dark-card border-t border-gray-200 dark:border-dark-border pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Gold gradient divider */}
         <div className="divider-gold mb-12" />
@@ -49,7 +49,7 @@ export default function Footer() {
             <a href="#" className="font-accent text-xl tracking-[0.25em] text-red-shimmer inline-block mb-4">
               DHAGAJI 
             </a>
-            <p className="font-body text-gray-400 text-sm leading-relaxed mb-6">
+            <p className="font-body text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-6">
               Handcrafted emerald and gold bangdi for the modern bride. Jaipur since 1998.
             </p>
             <div className="flex gap-3">
@@ -57,7 +57,7 @@ export default function Footer() {
                 <a
                   key={s}
                   href="#"
-                  className="w-10 h-10 rounded-full border border-dark-border flex items-center justify-center text-gray-400 hover:text-red-500 hover:border-red-500 transition-all duration-300"
+                  className="w-10 h-10 rounded-full border border-gray-200 dark:border-dark-border flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-red-500 hover:border-red-500 transition-all duration-300"
                   aria-label={s}
                 >
                   {socialIcon(s)}
@@ -68,11 +68,11 @@ export default function Footer() {
 
           {/* Shop links */}
           <div>
-            <h4 className="font-accent text-white text-xs tracking-[0.2em] uppercase mb-5">Shop</h4>
+            <h4 className="font-accent text-gray-900 dark:text-white text-xs tracking-[0.2em] uppercase mb-5">Shop</h4>
             <ul className="space-y-3">
               {shopLinks.map((link) => (
                 <li key={link}>
-                  <a href="#" className="font-body text-gray-400 text-sm hover:text-red-500 transition-colors duration-300">
+                  <a href="#" className="font-body text-gray-600 dark:text-gray-400 text-sm hover:text-red-500 transition-colors duration-300">
                     {link}
                   </a>
                 </li>
@@ -82,13 +82,13 @@ export default function Footer() {
 
           {/* Info links */}
           <div>
-            <h4 className="font-accent text-white text-xs tracking-[0.2em] uppercase mb-5">Info</h4>
+            <h4 className="font-accent text-gray-900 dark:text-white text-xs tracking-[0.2em] uppercase mb-5">Info</h4>
             <ul className="space-y-3">
               {infoLinks.map((link) => (
                 <li key={link}>
                   <a
                     href={link === 'About Us' ? '#about' : link === 'Craftsmanship' ? '#craftsmanship' : '#'}
-                    className="font-body text-gray-400 text-sm hover:text-red-500 transition-colors duration-300"
+                    className="font-body text-gray-600 dark:text-gray-400 text-sm hover:text-red-500 transition-colors duration-300"
                   >
                     {link}
                   </a>
@@ -99,15 +99,15 @@ export default function Footer() {
 
           {/* Newsletter / Contact CTA */}
           <div>
-            <h4 className="font-accent text-white text-xs tracking-[0.2em] uppercase mb-5">Connect</h4>
-            <p className="font-body text-gray-400 text-sm leading-relaxed mb-4">
+            <h4 className="font-accent text-gray-900 dark:text-white text-xs tracking-[0.2em] uppercase mb-5">Connect</h4>
+            <p className="font-body text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4">
               Subscribe for new collection launches and exclusive bridal offers.
             </p>
             <div className="flex gap-2">
               <input
                 type="email"
                 placeholder="Your email"
-                className="flex-1 bg-dark border border-dark-border rounded px-3 py-2.5 font-body text-white text-sm placeholder-gray-500 input-gold transition-all"
+                className="flex-1 bg-white dark:bg-dark border border-gray-200 dark:border-dark-border rounded px-3 py-2.5 font-body text-gray-900 dark:text-white text-sm placeholder-gray-400 dark:placeholder-gray-500 input-gold transition-all"
               />
               <button className="btn-gold px-4 py-2.5 text-[10px] tracking-[0.15em] rounded uppercase flex-shrink-0">
                 Join
@@ -119,13 +119,13 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="divider-gold mb-6" />
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
-          <p className="font-body text-gray-500 text-xs">
+          <p className="font-body text-gray-500 dark:text-gray-500 text-xs">
             &copy; {year} DHAGAJI . All rights reserved.
           </p>
           <div className="flex gap-6">
-            <a href="#" className="font-body text-gray-500 text-xs hover:text-red-500 transition-colors">Privacy Policy</a>
-            <a href="#" className="font-body text-gray-500 text-xs hover:text-red-500 transition-colors">Terms of Service</a>
-            <a href="#" className="font-body text-gray-500 text-xs hover:text-red-500 transition-colors">Refund Policy</a>
+            <a href="#" className="font-body text-gray-500 dark:text-gray-500 text-xs hover:text-red-500 transition-colors">Privacy Policy</a>
+            <a href="#" className="font-body text-gray-500 dark:text-gray-500 text-xs hover:text-red-500 transition-colors">Terms of Service</a>
+            <a href="#" className="font-body text-gray-500 dark:text-gray-500 text-xs hover:text-red-500 transition-colors">Refund Policy</a>
           </div>
         </div>
       </div>

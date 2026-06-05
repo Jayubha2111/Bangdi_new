@@ -14,6 +14,26 @@ html {
   scroll-behavior: smooth;
 }
 
+html.light {
+  --bg-color: #ffffff;
+  --text-color: #1a1a1a;
+  --text-light: #4b5563;
+  --navbar-bg: rgba(255, 255, 255, 0.95);
+  --card-bg: #f9fafb;
+  --border-color: #e5e7eb;
+  --red-text: #ef2a28;
+}
+
+html.dark {
+  --bg-color: #0a0a0a;
+  --text-color: #f3f4f6;
+  --text-light: #9ca3af;
+  --navbar-bg: rgba(10, 10, 10, 0.95);
+  --card-bg: #141414;
+  --border-color: #2a2a2a;
+  --red-text: #ff4444;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -21,11 +41,20 @@ html {
 }
 
 body {
-  background-color: #0a0a0a;
-  color: #f3f4f6;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   font-family: 'Cormorant Garamond', serif;
   overflow-x: hidden;
   position: relative;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.light body::after {
+  opacity: 0.008;
+}
+
+html.dark body::after {
+  opacity: 0.03;
 }
 
 body::after {
@@ -37,7 +66,6 @@ body::after {
   height: 100%;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.03;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
   background-size: 256px 256px;
 }
@@ -47,28 +75,45 @@ body::after {
   color: #ff4444;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
+/* Dark mode scrollbar */
+html.dark ::-webkit-scrollbar-track {
   background: #0a0a0a;
 }
 
-::-webkit-scrollbar-thumb {
+html.dark ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #ef2a28, #dc143c);
   border-radius: 4px;
 }
 
-::-webkit-scrollbar-thumb:hover {
+html.dark ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #ff4444, #ef2a28);
 }
 
-/* Firefox scrollbar */
-* {
-  scrollbar-width: thin;
+html.dark {
   scrollbar-color: #ef2a28 #0a0a0a;
+}
+
+/* Light mode scrollbar */
+html.light ::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+html.light ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ef2a28, #dc143c);
+  border-radius: 4px;
+}
+
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #ff4444, #ef2a28);
+}
+
+html.light {
+  scrollbar-color: #ef2a28 #ffffff;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
 /* Red shimmer text */
@@ -88,12 +133,25 @@ body::after {
   border: none;
 }
 
+html.light .divider-gold {
+  background: linear-gradient(90deg, transparent, #ef2a28, transparent);
+}
+
+html.dark .divider-gold {
+  background: linear-gradient(90deg, transparent, #ef2a28, transparent);
+}
+
 /* Card glow on hover */
 .card-glow {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card-glow:hover {
+html.light .card-glow:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 20px rgba(239, 42, 40, 0.2), 0 4px 15px rgba(255, 255, 255, 0.3);
+}
+
+html.dark .card-glow:hover {
   transform: translateY(-4px);
   box-shadow: 0 0 20px rgba(239, 42, 40, 0.3), 0 4px 15px rgba(26, 26, 26, 0.2);
 }
@@ -259,6 +317,22 @@ body::after {
   border-bottom: 1px solid rgba(239, 42, 40, 0.2);
 }
 
+.navbar-scrolled-light {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(239, 42, 40, 0.3);
+}
+
+/* Light mode hamburger */
+html.light .hamburger-line {
+  background: #ef2a28;
+}
+
+/* Dark mode hamburger */
+html.dark .hamburger-line {
+  background: #ef2a28;
+}
+
 /* Hamburger */
 .hamburger-line {
   width: 24px;
@@ -290,6 +364,16 @@ body::after {
 .mobile-menu-open {
   max-height: 500px;
   opacity: 1;
+}
+
+html.light .mobile-menu-enter {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: #e5e7eb !important;
+}
+
+html.dark .mobile-menu-enter {
+  background: rgba(20, 20, 20, 0.95) !important;
+  border-color: #2a2a2a !important;
 }
 
 /* Filter tabs */

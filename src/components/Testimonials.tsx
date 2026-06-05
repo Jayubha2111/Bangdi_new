@@ -59,7 +59,7 @@ export default function Testimonials() {
   const r = reviews[activeIndex];
 
   return (
-    <section className="py-20 md:py-28 bg-dark-surface relative overflow-hidden">
+    <section className="py-20 md:py-28 bg-white dark:bg-dark-surface relative overflow-hidden">
       {/* Decorative background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,_rgba(239,42,40,0.06)_0%,_transparent_70%)] pointer-events-none" />
 
@@ -68,14 +68,14 @@ export default function Testimonials() {
           <p className="font-accent text-red-500 text-xs tracking-[0.3em] uppercase mb-4">
             Testimonials
           </p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             Voices of <span className="text-red-shimmer">Our Brides</span>
           </h2>
           <div className="divider-gold w-24 mx-auto mt-4" />
         </div>
 
         {/* Quote card */}
-        <div className="relative bg-dark-card border border-dark-border rounded-xl p-8 md:p-12 text-center mb-10">
+        <div className="relative bg-gray-50 dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-xl p-8 md:p-12 text-center mb-10">
           {/* Decorative quote mark */}
           <div className="absolute top-4 left-6 md:top-6 md:left-8 pointer-events-none">
             <svg width="48" height="40" viewBox="0 0 60 48" xmlns="http://www.w3.org/2000/svg">
@@ -86,13 +86,13 @@ export default function Testimonials() {
           <div className={`transition-opacity duration-300 ${animating ? 'opacity-0' : 'opacity-100'}`}>
             <StarRating />
 
-            <p className="font-body italic text-xl md:text-2xl text-gray-200 leading-relaxed my-6 md:my-8 max-w-2xl mx-auto">
+            <p className="font-body italic text-xl md:text-2xl text-gray-700 dark:text-gray-200 leading-relaxed my-6 md:my-8 max-w-2xl mx-auto">
               &ldquo;{r.text}&rdquo;
             </p>
 
-            <p className="font-display text-white text-lg font-semibold">{r.author}</p>
-            <p className="font-body text-gray-400 text-sm mb-2">{r.city}</p>
-            <span className="inline-block font-accent text-[10px] tracking-[0.15em] uppercase text-red-500 bg-dark-surface border border-dark-border px-3 py-1 rounded">
+            <p className="font-display text-gray-900 dark:text-white text-lg font-semibold">{r.author}</p>
+            <p className="font-body text-gray-500 dark:text-gray-400 text-sm mb-2">{r.city}</p>
+            <span className="inline-block font-accent text-[10px] tracking-[0.15em] uppercase text-red-500 bg-red-50 dark:bg-dark-surface border border-gray-200 dark:border-dark-border px-3 py-1 rounded">
               {r.product}
             </span>
           </div>
@@ -107,7 +107,7 @@ export default function Testimonials() {
               className={`font-accent text-xs tracking-[0.1em] uppercase px-4 py-2.5 rounded transition-all duration-300 ${
                 i === activeIndex
                   ? 'bg-red-500 text-white font-semibold'
-                  : 'bg-dark-card border border-dark-border text-gray-400 hover:text-red-500 hover:border-red-500/50'
+                  : 'bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border text-gray-500 dark:text-gray-400 hover:text-red-500 hover:border-red-500/50'
               }`}
             >
               {review.author.split(' ')[0]}
