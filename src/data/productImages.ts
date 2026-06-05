@@ -15,7 +15,7 @@ export const productImageData: ProductImageData[] = [
   },
   {
     id: 2,
-    imagePath: '/download1.jpeg',
+    imagePath: '/download1.jpg',
     alt: 'Emerald Rani Kada - Mughal Inspired Design',
   },
   {

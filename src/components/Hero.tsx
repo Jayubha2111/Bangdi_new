@@ -33,13 +33,27 @@ const SparkleIcon = ({ size }: { size: number }) => (
   </svg>
 );
 
-export default function Hero() {
+// ─── Props: pass desktopImage & mobileImage from parent ───
+interface HeroProps {
+  desktopImage?: string;
+  mobileImage?: string;
+}
+
+export default function Hero({
+  desktopImage = '/download6.jpeg',
+  mobileImage  = '/download6.jpeg',             // if not passed, falls back to desktopImage
+}: HeroProps) {
   const orbRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const { theme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   useEffect(() => {
@@ -54,14 +68,24 @@ export default function Hero() {
     return () => window.removeEventListener('mousemove', handleMouse);
   }, [mounted]);
 
+  // Pick correct image
+  const bgImage = isMobile && mobileImage ? mobileImage : desktopImage;
+
+  // Scrim — light mode: NO white overlay, just a very subtle dark-bottom gradient
+  // so image stays vivid and text stays readable
+  const scrim =
+    theme === 'dark'
+      ? 'linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 40%, rgba(0,0,0,0.72) 100%)'
+      : 'linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.04) 40%, rgba(0,0,0,0.45) 100%)';
+
   return (
     <section
       className="relative overflow-hidden"
       style={{ minHeight: '100vh', width: '100%', display: 'flex', flexDirection: 'column' }}
     >
-      {/* ── BACKGROUND IMAGE — full screen, no white overlay ── */}
+      {/* ── BACKGROUND IMAGE ── */}
       <img
-        src="/download4.jpeg"
+        src={bgImage}
         alt=""
         style={{
           position: 'absolute',
@@ -69,26 +93,23 @@ export default function Hero() {
           width: '100%',
           height: '100%',
           objectFit: 'cover',
-          objectPosition: 'center 30%', // shows more of the jewelry, not too zoomed in
+          objectPosition: isMobile ? 'center center' : 'center 30%',
           display: 'block',
           zIndex: 0,
         }}
       />
 
-      {/* ── Scrim: very light overlay just for text readability ── */}
+      {/* ── SCRIM — no white tint, just contrast ── */}
       <div
         style={{
           position: 'absolute',
           inset: 0,
           zIndex: 1,
-          background:
-            theme === 'dark'
-              ? 'linear-gradient(to bottom, rgba(0,0,0,0.50) 0%, rgba(0,0,0,0.30) 40%, rgba(0,0,0,0.60) 100%)'
-              : 'linear-gradient(to bottom, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0.10) 40%, rgba(255,255,255,0.35) 100%)',
+          background: scrim,
         }}
       />
 
-      {/* ── Red accent glow center ── */}
+      {/* ── Red accent glow ── */}
       <div
         style={{
           position: 'absolute',
@@ -99,26 +120,35 @@ export default function Hero() {
         }}
       />
 
-      {/* ── Parallax orb ── */}
-      <div
-        ref={orbRef}
-        style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: 600,
-          height: 600,
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(239,42,40,0.08) 0%, transparent 70%)',
-          pointerEvents: 'none',
-          zIndex: 2,
-        }}
-      />
+      {/* ── Parallax orb (desktop only) ── */}
+      {!isMobile && (
+        <div
+          ref={orbRef}
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: 600,
+            height: 600,
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(239,42,40,0.08) 0%, transparent 70%)',
+            pointerEvents: 'none',
+            zIndex: 2,
+          }}
+        />
+      )}
 
       {/* ── Decorative geometric lines ── */}
       <div
-        style={{ position: 'absolute', inset: 0, pointerEvents: 'none', opacity: 0.10, zIndex: 2 }}
+        style={{
+          position: 'absolute',
+          inset: 0,
+          pointerEvents: 'none',
+          opacity: 0.10,
+          zIndex: 2,
+          display: isMobile ? 'none' : 'block',
+        }}
         dangerouslySetInnerHTML={{
           __html: `<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
             <circle cx="600" cy="400" r="300" fill="none" stroke="#ef2a28" stroke-width="0.5" stroke-dasharray="8 8"/>
@@ -131,24 +161,27 @@ export default function Hero() {
       />
 
       {/* ── Sparkles ── */}
-      {sparklePositions.map((s, i) => (
-        <div
-          key={i}
-          style={{
-            position: 'absolute',
-            top: s.top,
-            left: s.left,
-            animation: `sparkle 2s ease-in-out infinite`,
-            animationDelay: s.delay,
-            pointerEvents: 'none',
-            zIndex: 3,
-          }}
-        >
-          <SparkleIcon size={s.size} />
-        </div>
-      ))}
+      {sparklePositions
+        // on mobile show fewer sparkles
+        .filter((_, i) => !isMobile || i % 3 === 0)
+        .map((s, i) => (
+          <div
+            key={i}
+            style={{
+              position: 'absolute',
+              top: s.top,
+              left: s.left,
+              animation: `sparkle 2s ease-in-out infinite`,
+              animationDelay: s.delay,
+              pointerEvents: 'none',
+              zIndex: 3,
+            }}
+          >
+            <SparkleIcon size={s.size} />
+          </div>
+        ))}
 
-      {/* ── MAIN CONTENT — centered vertically, padded for navbar ── */}
+      {/* ── MAIN CONTENT ── */}
       <div
         style={{
           position: 'relative',
@@ -157,9 +190,7 @@ export default function Hero() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          paddingTop: '6rem',   // navbar height clearance
-          paddingBottom: '7rem', // stats bar clearance
-          padding: '6rem 1rem 7rem',
+          padding: isMobile ? '5rem 1.25rem 8rem' : '6rem 1rem 7rem',
         }}
       >
         <div style={{ maxWidth: '56rem', width: '100%', textAlign: 'center' }}>
@@ -167,11 +198,11 @@ export default function Hero() {
             className="font-accent animate-fadeIn"
             style={{
               color: '#ef2a28',
-              fontSize: '0.7rem',
+              fontSize: isMobile ? '0.6rem' : '0.7rem',
               letterSpacing: '0.3em',
               textTransform: 'uppercase',
-              marginBottom: '1.5rem',
-              textShadow: theme === 'light' ? '0 1px 6px rgba(255,255,255,0.8)' : 'none',
+              marginBottom: '1.25rem',
+              textShadow: '0 1px 6px rgba(0,0,0,0.5)',
             }}
           >
             Handcrafted Heritage Since 1998
@@ -180,12 +211,12 @@ export default function Hero() {
           <h1
             className="font-display animate-fadeIn"
             style={{
-              fontSize: 'clamp(4rem, 13vw, 9rem)',
+              fontSize: isMobile ? 'clamp(3.5rem, 20vw, 5.5rem)' : 'clamp(4rem, 13vw, 9rem)',
               fontWeight: 700,
               lineHeight: 1.0,
-              marginBottom: '1.25rem',
+              marginBottom: '1rem',
               color: '#ef2a28',
-              textShadow: '0 2px 40px rgba(239,42,40,0.35)',
+              textShadow: '0 2px 40px rgba(239,42,40,0.4), 0 1px 0 rgba(0,0,0,0.3)',
             }}
           >
             DHAGAJI
@@ -195,16 +226,13 @@ export default function Hero() {
             className="font-body animate-fadeIn"
             style={{
               fontStyle: 'italic',
-              fontSize: 'clamp(1rem, 2.5vw, 1.6rem)',
-              marginBottom: '2.5rem',
-              color: theme === 'dark' ? '#f3f4f6' : '#1a1a1a',
-              textShadow:
-                theme === 'light'
-                  ? '0 1px 12px rgba(255,255,255,0.9)'
-                  : '0 1px 8px rgba(0,0,0,0.5)',
+              fontSize: isMobile ? 'clamp(0.9rem, 4vw, 1.1rem)' : 'clamp(1rem, 2.5vw, 1.6rem)',
+              marginBottom: '2rem',
+              color: '#f3f4f6',
+              textShadow: '0 1px 10px rgba(0,0,0,0.6)',
             }}
           >
-            Adorning Indias Brides with Emerald &amp; Gold for Generations
+            Adorning India&apos;s Brides with Emerald &amp; Gold for Generations
           </p>
 
           <div
@@ -214,14 +242,14 @@ export default function Hero() {
               flexWrap: 'wrap',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '1rem',
+              gap: '0.875rem',
             }}
           >
             <a
               href="#collection"
               className="btn-gold"
               style={{
-                padding: '0.875rem 2.5rem',
+                padding: isMobile ? '0.75rem 1.75rem' : '0.875rem 2.5rem',
                 fontSize: '0.8rem',
                 letterSpacing: '0.15em',
                 borderRadius: '0.25rem',
@@ -234,7 +262,7 @@ export default function Hero() {
               href="#craftsmanship"
               className="btn-gold-outline"
               style={{
-                padding: '0.875rem 2.5rem',
+                padding: isMobile ? '0.75rem 1.75rem' : '0.875rem 2.5rem',
                 fontSize: '0.8rem',
                 letterSpacing: '0.15em',
                 borderRadius: '0.25rem',
@@ -247,11 +275,11 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ── STATS BAR — pinned to bottom, above scroll indicator ── */}
+      {/* ── STATS BAR ── */}
       <div
         style={{
           position: 'absolute',
-          bottom: '3.5rem',
+          bottom: isMobile ? '2.75rem' : '3.5rem',
           left: 0,
           width: '100%',
           zIndex: 10,
@@ -260,7 +288,11 @@ export default function Hero() {
         <div style={{ maxWidth: '56rem', margin: '0 auto', padding: '0 1rem' }}>
           <div
             className="animate-fadeIn"
-            style={{ display: 'flex', justifyContent: 'center', gap: 'clamp(2rem, 8vw, 5rem)' }}
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              gap: isMobile ? '2rem' : 'clamp(2rem, 8vw, 5rem)',
+            }}
           >
             {[
               { value: '500+', label: 'Designs' },
@@ -271,12 +303,12 @@ export default function Hero() {
                 <div
                   className="font-accent"
                   style={{
-                    fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
+                    fontSize: isMobile ? 'clamp(1.4rem, 6vw, 1.8rem)' : 'clamp(1.75rem, 4vw, 2.5rem)',
                     fontWeight: 700,
                     color: '#ef2a28',
                     lineHeight: 1,
-                    marginBottom: '0.25rem',
-                    textShadow: '0 2px 20px rgba(239,42,40,0.3)',
+                    marginBottom: '0.2rem',
+                    textShadow: '0 2px 20px rgba(239,42,40,0.4)',
                   }}
                 >
                   {stat.value}
@@ -284,14 +316,11 @@ export default function Hero() {
                 <div
                   className="font-body"
                   style={{
-                    fontSize: '0.65rem',
+                    fontSize: isMobile ? '0.55rem' : '0.65rem',
                     letterSpacing: '0.15em',
                     textTransform: 'uppercase',
-                    color: theme === 'dark' ? '#d1d5db' : '#1a1a1a',
-                    textShadow:
-                      theme === 'light'
-                        ? '0 1px 6px rgba(255,255,255,0.8)'
-                        : '0 1px 4px rgba(0,0,0,0.5)',
+                    color: '#e5e7eb',
+                    textShadow: '0 1px 4px rgba(0,0,0,0.6)',
                   }}
                 >
                   {stat.label}
@@ -306,20 +335,20 @@ export default function Hero() {
       <div
         style={{
           position: 'absolute',
-          bottom: '1rem',
+          bottom: '0.75rem',
           left: '50%',
           transform: 'translateX(-50%)',
           zIndex: 10,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: '0.4rem',
+          gap: '0.3rem',
         }}
       >
         <span
           className="font-accent"
           style={{
-            fontSize: '0.55rem',
+            fontSize: '0.5rem',
             letterSpacing: '0.2em',
             color: '#ef2a28',
             textTransform: 'uppercase',
@@ -330,7 +359,7 @@ export default function Hero() {
         <div
           style={{
             width: 1,
-            height: 28,
+            height: 24,
             background: 'linear-gradient(to bottom, #ef2a28, transparent)',
             animation: 'scrollIndicator 1.5s ease-in-out infinite',
           }}

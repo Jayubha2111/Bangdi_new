@@ -23,11 +23,42 @@ const steps = [
   },
 ];
 
+const SparkleIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-red-500">
+    <path d="M12 2l1.5 6.5L20 10l-6.5 1.5L12 18l-1.5-6.5L4 10l6.5-1.5z"/>
+    <path d="M22 12l-1.5 6.5L14 19l6.5-1.5L22 12z" opacity="0.5"/>
+    <path d="M10 22l-1.5-6.5L2 14l6.5 1.5L10 22z" opacity="0.5"/>
+  </svg>
+);
+const CheckIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-red-500">
+    <polyline points="20 6 9 17 4 12"/>
+  </svg>
+);
+const RulerIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-red-500">
+    <path d="M2 22L22 2"/>
+    <path d="M12 12l5-5"/>
+    <path d="M16 8l2-2"/>
+    <path d="M8 16l-2 2"/>
+    <path d="M4 20l1-1"/>
+  </svg>
+);
+const GiftIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-red-500">
+    <polyline points="20 12 20 22 4 22 4 12"/>
+    <rect x="2" y="7" width="20" height="5"/>
+    <line x1="12" y1="22" x2="12" y2="7"/>
+    <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
+    <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+  </svg>
+);
+
 const features = [
-  { icon: '✨', label: 'Lifetime Polish' },
-  { icon: '✓', label: 'BIS Certified' },
-  { icon: '📏', label: 'Custom Sizing' },
-  { icon: '🎁', label: 'Gift Wrapping' },
+  { icon: <SparkleIcon />, label: 'Lifetime Polish' },
+  { icon: <CheckIcon />, label: 'BIS Certified' },
+  { icon: <RulerIcon />, label: 'Custom Sizing' },
+  { icon: <GiftIcon />, label: 'Gift Wrapping' },
 ];
 
 export default function Craftsmanship() {
@@ -98,7 +129,7 @@ export default function Craftsmanship() {
                 key={f.label}
                 className="feature-icon-wrap flex items-center gap-3 bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-lg px-4 py-3 md:px-5 md:py-4"
               >
-                <span className="text-lg">{f.icon}</span>
+                <span className="flex-shrink-0">{f.icon}</span>
                 <span className="font-accent text-gray-700 dark:text-gray-300 text-xs tracking-[0.1em] uppercase">{f.label}</span>
               </div>
             ))}
