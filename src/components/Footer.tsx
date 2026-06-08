@@ -1,5 +1,7 @@
 'use client';
 
+import { useReveal } from '@/helpers/useReveal';
+
 const shopLinks = ['Bangles', 'Necklaces', 'Earrings', 'All Products'];
 const infoLinks = ['About Us', 'Craftsmanship', 'Care Instructions', 'Shipping & Returns', 'Contact'];
 const socialLinks = [
@@ -45,10 +47,16 @@ const socialIcon = (type: string) => {
 };
 
 export default function Footer() {
+  const { ref: brandRef, revealed: brandRevealed } = useReveal();
+  const { ref: shopRef, revealed: shopRevealed } = useReveal();
+  const { ref: infoRef, revealed: infoRevealed } = useReveal();
+  const { ref: valuesRef, revealed: valuesRevealed } = useReveal();
+  const { ref: bottomRef, revealed: bottomRevealed } = useReveal();
+
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-purple-900 dark:bg-slate-950 border-t-2 border-amber-500 dark:border-amber-400 pt-16 pb-8">
+    <footer className="bg-purple-900 dark:bg-gray-950 border-t-2 border-amber-500 dark:border-amber-400/50 pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Divider */}
         <div className="h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent mb-12"/>
@@ -56,7 +64,7 @@ export default function Footer() {
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 mb-12">
           {/* Brand */}
-          <div className="lg:col-span-2">
+          <div ref={brandRef} className={`lg:col-span-2 reveal ${brandRevealed ? 'revealed' : ''}`}>
             <a href="#" className="font-accent text-xl tracking-[0.25em] inline-block mb-4 text-amber-400">
               DHAGAJI
             </a>
@@ -113,7 +121,7 @@ export default function Footer() {
           </div>
 
           {/* Shop links */}
-          <div>
+          <div ref={shopRef} className={`reveal ${shopRevealed ? 'revealed' : ''}`}>
             <h4 className="font-accent text-amber-400 text-xs tracking-[0.2em] uppercase mb-5">Shop</h4>
             <ul className="space-y-3">
               {shopLinks.map((link) => (
@@ -127,7 +135,7 @@ export default function Footer() {
           </div>
 
           {/* Info links */}
-          <div>
+          <div ref={infoRef} className={`reveal ${infoRevealed ? 'revealed' : ''}`}>
             <h4 className="font-accent text-amber-400 text-xs tracking-[0.2em] uppercase mb-5">Info</h4>
             <ul className="space-y-3">
               {infoLinks.map((link) => (
@@ -144,7 +152,7 @@ export default function Footer() {
           </div>
 
           {/* Brand Values */}
-          <div>
+          <div ref={valuesRef} className={`reveal ${valuesRevealed ? 'revealed' : ''}`}>
             <h4 className="font-accent text-amber-400 text-xs tracking-[0.2em] uppercase mb-5">Why Choose Us</h4>
             <ul className="space-y-3 text-sm">
               <li className="flex items-center gap-2 font-body text-amber-400/70">
@@ -164,7 +172,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t-2 border-amber-400/30 pt-8">
+        <div ref={bottomRef} className={`border-t-2 border-amber-400/30 pt-8 reveal ${bottomRevealed ? 'revealed' : ''}`}>
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="font-body text-xs text-amber-400/60">
               © {year} Dhagaji Creation. All rights reserved.

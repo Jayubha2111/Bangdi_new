@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useReveal } from '@/helpers/useReveal';
 
 const contactInfo = [
   {
@@ -55,6 +56,13 @@ interface FormData {
 }
 
 export default function Contact() {
+  const { ref: headerRef, revealed: headerRevealed } = useReveal();
+  const { ref: formRef, revealed: formRevealed } = useReveal();
+  const c0 = useReveal();
+  const c1 = useReveal();
+  const c2 = useReveal();
+  const c3 = useReveal();
+
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -110,16 +118,16 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-28 bg-purple-100 dark:bg-slate-900">
+    <section id="contact" className="py-20 md:py-28 bg-purple-100 dark:bg-gray-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
+        <div ref={headerRef} className={`text-center mb-14 reveal ${headerRevealed ? 'revealed' : ''}`}>
           <p className="font-accent text-purple-900 dark:text-amber-400 text-xs tracking-[0.3em] uppercase mb-4">
             Handcrafted • Traditional • Women Empowered
           </p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-purple-900 dark:text-white mb-4">
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-purple-900 dark:text-gray-50 mb-4">
             Connect With Us
           </h2>
-          <p className="font-body text-gray-700 dark:text-gray-400 text-lg">
+          <p className="font-body text-gray-700 dark:text-gray-300 text-lg">
             Reach out to explore our handmade thread jewellery collection or place your order
           </p>
           <div className="divider-gold w-32 mx-auto mt-6 h-1 bg-amber-500 dark:bg-amber-400"/>
@@ -127,9 +135,9 @@ export default function Contact() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Left: Form */}
-          <div>
+          <div ref={formRef} className={`reveal-left ${formRevealed ? 'revealed' : ''}`}>
             {submitted ? (
-                <div className="h-full flex flex-col items-center justify-center bg-white dark:bg-slate-800 border-2 border-amber-500 dark:border-amber-400 rounded-xl p-10 text-center">
+                <div className="h-full flex flex-col items-center justify-center bg-white dark:bg-gray-900 border-2 border-amber-500 dark:border-amber-400/50 rounded-xl p-10 text-center">
                 <div style={{ animation: 'starSpin 0.8s ease-out' }}>
                   <svg width="48" height="48" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M16 0L19.6 11.2L32 12.4L22.8 21.2L25.6 34L16 26.8L6.4 34L9.2 21.2L0 12.4L12.4 11.2L16 0Z" fill="#d4af37" />
@@ -154,7 +162,7 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-600 rounded-lg px-4 py-3.5 font-body text-gray-900 dark:text-white text-base placeholder-gray-400 dark:placeholder-gray-500 transition-all focus:border-purple-500 focus:dark:border-amber-400"
+                    className="w-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3.5 font-body text-gray-900 dark:text-gray-50 text-base placeholder-gray-400 dark:placeholder-gray-500 transition-all focus:border-purple-500 dark:focus:border-amber-400"
                     placeholder="Your full name"
                   />
                 </div>
@@ -167,7 +175,7 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-600 rounded-lg px-4 py-3.5 font-body text-gray-900 dark:text-white text-base placeholder-gray-400 dark:placeholder-gray-500 transition-all focus:border-purple-500 focus:dark:border-amber-400"
+                    className="w-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3.5 font-body text-gray-900 dark:text-gray-50 text-base placeholder-gray-400 dark:placeholder-gray-500 transition-all focus:border-purple-500 dark:focus:border-amber-400"
                     placeholder="your@email.com"
                   />
                 </div>
@@ -180,7 +188,7 @@ export default function Contact() {
                     value={formData.phone}
                     onChange={handleChange}
                     required
-                    className="w-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-600 rounded-lg px-4 py-3.5 font-body text-gray-900 dark:text-white text-base placeholder-gray-400 dark:placeholder-gray-500 transition-all focus:border-purple-500 focus:dark:border-amber-400"
+                    className="w-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3.5 font-body text-gray-900 dark:text-gray-50 text-base placeholder-gray-400 dark:placeholder-gray-500 transition-all focus:border-purple-500 dark:focus:border-amber-400"
                     placeholder="+91 98765 43210"
                   />
                 </div>
@@ -193,7 +201,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     rows={4}
-                    className="w-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-600 rounded-lg px-4 py-3.5 font-body text-gray-900 dark:text-white text-base placeholder-gray-400 dark:placeholder-gray-500 transition-all resize-none focus:border-purple-500 focus:dark:border-amber-400"
+                    className="w-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3.5 font-body text-gray-900 dark:text-gray-50 text-base placeholder-gray-400 dark:placeholder-gray-500 transition-all resize-none focus:border-purple-500 dark:focus:border-amber-400"
                     placeholder="Tell us about your vision..."
                   />
                 </div>
@@ -212,10 +220,10 @@ export default function Contact() {
           {/* Right: Info cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 content-start">
             {contactInfo.map((info, i) => (
-              <div key={i} className="bg-white dark:bg-slate-800 border-2 border-amber-500 dark:border-amber-400 rounded-lg p-5 md:p-6 hover:shadow-lg transition-shadow">
+              <div key={i} ref={[c0, c1, c2, c3][i].ref} className={`bg-white dark:bg-gray-900 border-2 border-amber-500 dark:border-amber-400/50 rounded-lg p-5 md:p-6 hover:shadow-lg transition-shadow reveal ${[c0, c1, c2, c3][i].revealed ? 'revealed' : ''}`} style={{ transitionDelay: `${(i + 1) * 100}ms` }}>
                 <div className="mb-3">{info.icon}</div>
                 <h4 className="font-accent text-purple-900 dark:text-amber-400 text-xs tracking-[0.15em] uppercase mb-1">{info.label}</h4>
-                <p className="font-body text-gray-700 dark:text-gray-400 text-sm leading-relaxed">{info.value}</p>
+                <p className="font-body text-gray-700 dark:text-gray-300 text-sm leading-relaxed">{info.value}</p>
               </div>
             ))}
           </div>

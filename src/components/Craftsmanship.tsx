@@ -1,5 +1,7 @@
 'use client';
 
+import { useReveal } from '@/helpers/useReveal';
+
 const steps = [
   {
     num: '01',
@@ -62,8 +64,15 @@ const features = [
 ];
 
 export default function Craftsmanship() {
+  const header = useReveal();
+  const textBlock = useReveal();
+  const step1 = useReveal();
+  const step2 = useReveal();
+  const step3 = useReveal();
+  const step4 = useReveal();
+  const featuresReveal = useReveal();
   return (
-    <section id="craftsmanship" className="py-20 md:py-28 bg-white dark:bg-slate-950 relative">
+    <section id="craftsmanship" className="py-20 md:py-28 bg-white dark:bg-gray-950 relative">
       {/* Grid background pattern */}
       <div className="absolute inset-0 pointer-events-none opacity-30"
         dangerouslySetInnerHTML={{
@@ -79,11 +88,11 @@ export default function Craftsmanship() {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-14">
+        <div ref={header.ref} className={`text-center mb-14 reveal ${header.revealed ? 'revealed' : ''}`}>
           <p className="font-accent text-purple-900 dark:text-amber-400 text-xs tracking-[0.3em] uppercase mb-4">
             Our Craftsmanship
           </p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-purple-900 dark:text-white mb-4">
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-purple-900 dark:text-gray-50 mb-4">
             Mastery in <span className="text-amber-500 dark:text-amber-400">Every Detail</span>
           </h2>
           <div className="divider-gold w-24 mx-auto mt-4" />
@@ -91,16 +100,16 @@ export default function Craftsmanship() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Left: Text */}
-          <div className="animate-fadeIn">
+          <div ref={textBlock.ref} className={`reveal ${textBlock.revealed ? 'revealed' : ''}`}>
             <p className="font-body text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-6">
               At Dhagaji Creation, every thread jewellery piece is born from a legacy of master craftsmanship passed down through generations. Our artisans in Himmatnagar, Gujarat have been creating handmade thread jewellery since we started, combining traditional techniques with modern precision.
             </p>
-            <p className="font-body text-gray-600 dark:text-gray-400 text-lg leading-relaxed mb-8">
+            <p className="font-body text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-8">
               We combine centuries-old hand-wrapping techniques with modern precision to craft pieces that are as durable as they are beautiful. Each piece passes through the hands of skilled women artisans who work with pride and passion.
             </p>
             <a
               href="#contact"
-              className="inline-block px-8 py-3.5 text-xs tracking-[0.15em] rounded uppercase font-bold transition-all bg-purple-900 text-amber-400 border-2 border-amber-400 hover:bg-amber-400 hover:text-purple-900"
+              className="inline-block px-8 py-3.5 text-xs tracking-[0.15em] rounded uppercase font-bold transition-all bg-purple-900 text-amber-400 border-2 border-amber-400 hover:bg-amber-400 hover:text-purple-900 dark:bg-purple-900 dark:text-amber-400 dark:border-amber-400/50 dark:hover:bg-amber-400 dark:hover:text-purple-900"
             >
               Contact Us
             </a>
@@ -108,26 +117,31 @@ export default function Craftsmanship() {
 
           {/* Right: Process steps */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {steps.map((step) => (
+            {[step1, step2, step3, step4].map((s, i) => (
               <div
-                key={step.num}
-                className="process-step bg-white dark:bg-slate-800 border-2 border-amber-500 dark:border-amber-400 rounded-lg p-5 md:p-6 group transition-all duration-300 hover:shadow-lg"
+                key={steps[i].num}
+                ref={s.ref}
+                className={`process-step bg-white dark:bg-gray-900 border-2 border-amber-500 dark:border-amber-400/50 rounded-lg p-5 md:p-6 group transition-all duration-500 reveal ${
+                  s.revealed ? 'revealed' : ''
+                }`}
+                style={{ transitionDelay: `${i * 0.1}s` }}
               >
-                <span className="font-accent text-amber-500 dark:text-amber-400 text-4xl font-bold block mb-2">{step.num}</span>
-                <h3 className="font-accent text-purple-900 dark:text-white text-sm tracking-[0.1em] uppercase mb-2">{step.title}</h3>
-                <p className="font-body text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{step.desc}</p>
+                <span className="font-accent text-amber-500 dark:text-amber-400 text-4xl font-bold block mb-2">{steps[i].num}</span>
+                <h3 className="font-accent text-purple-900 dark:text-gray-50 text-sm tracking-[0.1em] uppercase mb-2">{steps[i].title}</h3>
+                <p className="font-body text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{steps[i].desc}</p>
               </div>
             ))}
           </div>
         </div>
 
         {/* Features strip */}
-        <div className="mt-16 pt-10 border-t border-gray-200 dark:border-slate-700">
+        <div ref={featuresReveal.ref} className={`mt-16 pt-10 border-t border-gray-200 dark:border-gray-700 reveal ${featuresReveal.revealed ? 'revealed' : ''}`}>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {features.map((f) => (
+            {features.map((f, i) => (
               <div
                 key={f.label}
-                className="feature-icon-wrap flex items-center gap-3 bg-white dark:bg-slate-800 border-2 border-amber-500 dark:border-amber-400 rounded-lg px-4 py-3 md:px-5 md:py-4 hover:shadow-md transition-all"
+                className="feature-icon-wrap flex items-center gap-3 bg-white dark:bg-gray-900 border-2 border-amber-500 dark:border-amber-400/50 rounded-lg px-4 py-3 md:px-5 md:py-4 hover:shadow-md transition-all duration-300"
+                style={{ animation: featuresReveal.revealed ? `fadeUp 0.5s ease-out ${i * 0.1}s both` : 'none' }}
               >
                 <span className="flex-shrink-0">{f.icon}</span>
                 <span className="font-accent text-purple-900 dark:text-amber-400 text-xs tracking-[0.1em] uppercase">{f.label}</span>

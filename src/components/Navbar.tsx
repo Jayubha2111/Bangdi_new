@@ -119,11 +119,11 @@ export default function Navbar() {
       <div
         className={`md:hidden mobile-menu-enter ${
           theme === 'dark'
-            ? 'bg-slate-900/95'
+            ? 'bg-gray-950/95'
             : 'bg-white/95'
         } backdrop-blur-lg ${
           theme === 'dark'
-            ? 'border-slate-700'
+            ? 'border-gray-700'
             : 'border-gray-200'
         } border-t ${
           mobileOpen ? 'mobile-menu-open' : ''

@@ -1,51 +1,97 @@
 // Product image data - Maps products to their image paths
-// Images should be placed in public/images/products/ folder
+// Images are stored in public/images/products/ folder
 
 export interface ProductImageData {
   id: number;
-  imagePath: string;
-  alt: string;
+  images: string[];
+  alts: string[];
 }
 
 export const productImageData: ProductImageData[] = [
   {
     id: 1,
-    imagePath: '/download.jpeg',
-    alt: 'Royal Emerald Set - Panchkala Kada Collection',
+    images: [
+      '/images/products/products1.jpeg',
+      '/images/products/products2.jpeg',
+      '/images/products/products3.jpeg',
+    ],
+    alts: [
+      'Purple Thread Bangles - View 1',
+      'Purple Thread Bangles - View 2',
+      'Purple Thread Bangles - View 3',
+    ],
   },
   {
     id: 2,
-    imagePath: '/download1.jpg',
-    alt: 'Emerald Rani Kada - Mughal Inspired Design',
+    images: [
+      '/images/products/products4.jpeg',
+      '/images/products/products5.jpeg',
+      '/images/products/products6.jpeg',
+    ],
+    alts: [
+      'Golden Thread Bangles - View 1',
+      'Golden Thread Bangles - View 2',
+      'Golden Thread Bangles - View 3',
+    ],
   },
   {
     id: 3,
-    imagePath: '/download2.jpeg',
-    alt: 'Delicate Hara Chooda - Traditional Bridal Set',
+    images: [
+      '/images/products/products7.jpeg',
+      '/images/products/products8.jpeg',
+      '/images/products/products9.jpeg',
+    ],
+    alts: [
+      'Thread Necklace Purple - View 1',
+      'Thread Necklace Purple - View 2',
+      'Thread Necklace Purple - View 3',
+    ],
   },
   {
     id: 4,
-    imagePath: '/download3.jpeg',
-    alt: 'Kundan Emerald Bangle - Jaipur Kundan Craft',
+    images: [
+      '/images/products/products10.jpeg',
+      '/images/products/products11.jpeg',
+      '/images/products/products12.jpeg',
+    ],
+    alts: [
+      'Thread Jhumka Earrings - View 1',
+      'Thread Jhumka Earrings - View 2',
+      'Thread Jhumka Earrings - View 3',
+    ],
   },
   {
     id: 5,
-    imagePath: '/download4.jpeg',
-    alt: 'Festive Bangdi Set 12pc - Diwali Puja Special',
+    images: [
+      '/images/products/products13.jpeg',
+      '/images/products/products14.jpeg',
+      '/images/products/products15.jpeg',
+    ],
+    alts: [
+      'Festive Bangle Set - View 1',
+      'Festive Bangle Set - View 2',
+      'Festive Bangle Set - View 3',
+    ],
   },
   {
     id: 6,
-    imagePath: '/download5.jpeg',
-    alt: 'Bridal Haath Phool - Complete Hand Ornament',
+    images: [
+      '/images/products/products16.jpeg',
+      '/images/products/products17.jpeg',
+    ],
+    alts: [
+      'Bridal Thread Collection - View 1',
+      'Bridal Thread Collection - View 2',
+    ],
   },
 ];
 
-export const getProductImagePath = (productId: number): string => {
-  const image = productImageData.find((img) => img.id === productId);
-  return image?.imagePath || '/images/products/placeholder.jpg';
+export const getProductImages = (productId: number): string[] => {
+  const product = productImageData.find((img) => img.id === productId);
+  return product?.images || ['/images/products/products1.jpeg'];
 };
 
-export const getProductImageAlt = (productId: number): string => {
-  const image = productImageData.find((img) => img.id === productId);
-  return image?.alt || 'DHAGAJI Bangdi Product';
+export const getProductImageAlts = (productId: number): string[] => {
+  const product = productImageData.find((img) => img.id === productId);
+  return product?.alts || ['DHAGAJI Bangdi Product'];
 };

@@ -8,32 +8,33 @@
   --purple: #813EB6;
   --gold: #d4af37;
   --dark: #0a0a0a;
+  --bg-color: #ffffff;
+  --text-color: #1a1a1a;
+  --text-muted: #4b5563;
+  --card-bg: #ffffff;
+  --card-border: #d4af37;
+  --section-bg: #ffffff;
+  --section-alt: #f9fafb;
+  --accent: #d4af37;
+  --accent-hover: #c9a030;
+  --heading-color: #4a148c;
+}
+
+html.dark {
+  --bg-color: #030712;
+  --text-color: #d1d5db;
+  --text-muted: #6b7280;
+  --card-bg: #111827;
+  --card-border: #d4af37;
+  --section-bg: #030712;
+  --section-alt: #0a0a0a;
+  --accent: #fbbf24;
+  --accent-hover: #f59e0b;
+  --heading-color: #f9fafb;
 }
 
 html {
   scroll-behavior: smooth;
-}
-
-html.light {
-  --bg-color: #ffffff;
-  --text-color: #1a1a1a;
-  --text-light: #4b5563;
-  --navbar-bg: rgba(255, 255, 255, 0.95);
-  --card-bg: #f9fafb;
-  --border-color: #e5e7eb;
-  --primary-text: #813EB6;
-  --accent-text: #d4af37;
-}
-
-html.dark {
-  --bg-color: #0f0f0f;
-  --text-color: #f3f4f6;
-  --text-light: #d4af37;
-  --navbar-bg: rgba(15, 15, 15, 0.98);
-  --card-bg: #1a1a1a;
-  --border-color: #813EB6;
-  --primary-text: #d4af37;
-  --accent-text: #ffd700;
 }
 
 * {
@@ -237,6 +238,46 @@ html.dark .card-glow:hover {
 .delay-500 { animation-delay: 0.5s; }
 .delay-600 { animation-delay: 0.6s; }
 .delay-700 { animation-delay: 0.7s; }
+.delay-800 { animation-delay: 0.8s; }
+.delay-900 { animation-delay: 0.9s; }
+
+/* Reveal animations (scroll-triggered) */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.reveal-left.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.reveal-right.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.reveal-scale.revealed {
+  opacity: 1;
+  transform: scale(1);
+}
 
 /* @keyframes */
 @keyframes shimmer {
@@ -312,6 +353,47 @@ html.dark .card-glow:hover {
   100% { transform: rotate(360deg) scale(1); opacity: 1; }
 }
 
+@keyframes fadeInUp {
+  0% { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  0% { 
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Animation utility classes */
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-fade-in-scale {
+  animation: fadeInScale 0.4s ease-out;
+}
+
+/* Hide scrollbar while keeping scrollable */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 /* Navbar transition */
 .navbar-scrolled {
   background: rgba(15, 15, 15, 0.95);
@@ -379,61 +461,9 @@ html.dark .mobile-menu-enter {
 }
 
 /* Dark mode form inputs */
-html.dark input[type="text"],
-html.dark input[type="email"],
-html.dark input[type="tel"],
+html.dark input,
 html.dark textarea {
-  background-color: #1e293b;
-  border-color: #475569;
-  color: #f1f5f9;
-}
-
-html.dark input[type="text"]::placeholder,
-html.dark input[type="email"]::placeholder,
-html.dark input[type="tel"]::placeholder,
-html.dark textarea::placeholder {
-  color: #94a3b8;
-}
-
-html.dark input[type="text"]:focus,
-html.dark input[type="email"]:focus,
-html.dark input[type="tel"]:focus,
-html.dark textarea:focus {
-  border-color: #d4af37;
-  background-color: #0f172a;
-}
-
-/* Dark mode button styles */
-html.dark button {
   transition: all 0.3s ease;
-}
-
-/* Dark mode heading colors */
-html.dark h1, html.dark h2, html.dark h3, html.dark h4, html.dark h5, html.dark h6 {
-  color: #f1f5f9;
-}
-
-/* SVG colors in dark mode */
-html.dark svg {
-  color: inherit;
-}
-
-/* Ensure all gold/amber colors work in dark mode */
-.text-gold-500 {
-  color: #d4af37;
-}
-
-html.dark .text-gold-500 {
-  color: #fbbf24;
-}
-
-/* Icon colors */
-html.dark .text-amber-400 {
-  color: #fbbf24;
-}
-
-html.dark .text-amber-500 {
-  color: #f59e0b;
 }
 
 /* Filter tabs */

@@ -40,13 +40,14 @@ interface HeroProps {
 }
 
 export default function Hero({
-  desktopImage = '/download6.jpeg',
-  mobileImage  = '/download6.jpeg',             // if not passed, falls back to desktopImage
+  desktopImage = '/images/products/products2.jpeg',
+  mobileImage  = '/images/products/products2.jpeg',             // if not passed, falls back to desktopImage
 }: HeroProps) {
   const orbRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const { theme } = useTheme();
+  const isDark = theme === 'dark';
 
   useEffect(() => {
     setMounted(true);
@@ -92,11 +93,17 @@ export default function Hero({
         }}
       />
 
-
-
-
-
-
+      {/* ── Dark overlay for text readability ── */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 1,
+          background: isDark
+            ? 'linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.65) 100%)'
+            : 'linear-gradient(to bottom, rgba(0,0,0,0.40) 0%, rgba(0,0,0,0.20) 50%, rgba(0,0,0,0.40) 100%)',
+        }}
+      />
 
       {/* ── Decorative geometric lines ── */}
       <div
@@ -104,7 +111,7 @@ export default function Hero({
           position: 'absolute',
           inset: 0,
           pointerEvents: 'none',
-          opacity: 0.10,
+          opacity: isDark ? 0.15 : 0.10,
           zIndex: 2,
           display: isMobile ? 'none' : 'block',
         }}
@@ -226,7 +233,7 @@ export default function Hero({
                 letterSpacing: '0.15em',
                 borderRadius: '0.25rem',
                 display: 'inline-block',
-                backgroundColor: '#6b2e7f',
+                backgroundColor: isDark ? '#6b21a8' : '#6b2e7f',
                 color: '#d4af37',
                 textDecoration: 'none',
                 border: '2px solid #d4af37',
@@ -238,7 +245,7 @@ export default function Hero({
                 e.currentTarget.style.color = '#4F1D74';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = '#4F1D74';
+                e.currentTarget.style.backgroundColor = isDark ? '#6b21a8' : '#4F1D74';
                 e.currentTarget.style.color = '#d4af37';
               }}
             >

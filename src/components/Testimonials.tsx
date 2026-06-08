@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useReveal } from '@/helpers/useReveal';
 
 const reviews = [
   {
@@ -44,6 +45,13 @@ const StarRating = () => (
 );
 
 export default function Testimonials() {
+  const { ref: headerRef, revealed: headerRevealed } = useReveal();
+  const { ref: cardRef, revealed: cardRevealed } = useReveal();
+  const b0 = useReveal<HTMLButtonElement>();
+  const b1 = useReveal<HTMLButtonElement>();
+  const b2 = useReveal<HTMLButtonElement>();
+  const b3 = useReveal<HTMLButtonElement>();
+
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
 
@@ -59,23 +67,23 @@ export default function Testimonials() {
   const r = reviews[activeIndex];
 
   return (
-    <section className="py-20 md:py-28 bg-purple-100 dark:bg-slate-900 relative overflow-hidden">
+    <section className="py-20 md:py-28 bg-purple-100 dark:bg-gray-950 relative overflow-hidden">
       {/* Decorative background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,_rgba(107,46,127,0.08)_0%,_transparent_70%)] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,_rgba(107,46,127,0.08)_0%,_transparent_70%)] dark:bg-[radial-gradient(circle,_rgba(251,191,36,0.06)_0%,_transparent_70%)] pointer-events-none" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
-        <div className="text-center mb-12">
+        <div ref={headerRef} className={`text-center mb-12 reveal ${headerRevealed ? 'revealed' : ''}`}>
           <p className="font-accent text-purple-900 dark:text-amber-400 text-xs tracking-[0.3em] uppercase mb-4">
             Testimonials
           </p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-purple-900 dark:text-white mb-4">
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-purple-900 dark:text-gray-50 mb-4">
             What Our <span className="text-amber-500 dark:text-amber-400">Customers Say</span>
           </h2>
           <div className="divider-gold w-24 mx-auto mt-4 h-1 bg-amber-500 dark:bg-amber-400"/>
         </div>
 
         {/* Quote card */}
-        <div className="relative bg-white dark:bg-slate-800 border-2 border-amber-500 dark:border-amber-400 rounded-xl p-8 md:p-12 text-center mb-10">
+        <div ref={cardRef} className={`relative bg-white dark:bg-gray-900 border-2 border-amber-500 dark:border-amber-400/50 rounded-xl p-8 md:p-12 text-center mb-10 reveal-scale ${cardRevealed ? 'revealed' : ''}`}>
           {/* Decorative quote mark */}
           <div className="absolute top-4 left-6 md:top-6 md:left-8 pointer-events-none">
             <svg width="48" height="40" viewBox="0 0 60 48" xmlns="http://www.w3.org/2000/svg">
@@ -86,13 +94,13 @@ export default function Testimonials() {
           <div className={`transition-opacity duration-300 ${animating ? 'opacity-0' : 'opacity-100'}`}>
             <StarRating />
 
-            <p className="font-body italic text-xl md:text-2xl text-gray-700 dark:text-gray-200 leading-relaxed my-6 md:my-8 max-w-2xl mx-auto">
+            <p className="font-body italic text-xl md:text-2xl text-gray-700 dark:text-gray-300 leading-relaxed my-6 md:my-8 max-w-2xl mx-auto">
               &ldquo;{r.text}&rdquo;
             </p>
 
-            <p className="font-display text-purple-900 dark:text-white text-lg font-semibold">{r.author}</p>
-            <p className="font-body text-gray-600 dark:text-gray-400 text-sm mb-2">{r.city}</p>
-            <span className="inline-block font-accent text-[10px] tracking-[0.15em] uppercase text-purple-900 dark:text-slate-900 bg-purple-100 dark:bg-amber-400 border-2 border-amber-500 dark:border-amber-400 px-3 py-1 rounded">
+            <p className="font-display text-purple-900 dark:text-gray-50 text-lg font-semibold">{r.author}</p>
+            <p className="font-body text-gray-600 dark:text-gray-300 text-sm mb-2">{r.city}</p>
+            <span className="inline-block font-accent text-[10px] tracking-[0.15em] uppercase text-purple-900 dark:text-black bg-purple-100 dark:bg-amber-400 border-2 border-amber-500 dark:border-amber-400/50 px-3 py-1 rounded">
               {r.product}
             </span>
           </div>
@@ -103,12 +111,14 @@ export default function Testimonials() {
           {reviews.map((review, i) => (
             <button
               key={i}
+              ref={[b0, b1, b2, b3][i].ref}
               onClick={() => switchReview(i)}
-              className={`font-accent text-xs tracking-[0.1em] uppercase px-4 py-2.5 rounded transition-all duration-300 ${
+              className={`font-accent text-xs tracking-[0.1em] uppercase px-4 py-2.5 rounded transition-all duration-300 reveal ${[b0, b1, b2, b3][i].revealed ? 'revealed' : ''} ${
                 i === activeIndex
-                  ? 'bg-purple-900 text-amber-400 dark:bg-amber-400 dark:text-purple-900 font-semibold'
-                  : 'bg-white dark:bg-slate-800 border border-amber-500 dark:border-amber-400 text-purple-900 dark:text-amber-400 hover:bg-amber-500 hover:text-purple-900'
+                  ? 'bg-purple-900 text-amber-400 dark:bg-amber-400 dark:text-amber-400 font-semibold'
+                  : 'bg-white dark:bg-gray-900 border border-amber-500 dark:border-amber-400/50 text-purple-900 dark:text-amber-400 hover:bg-amber-500 hover:text-purple-900'
               }`}
+              style={{ transitionDelay: `${i * 100}ms` }}
             >
               {review.author.split(' ')[0]}
             </button>
