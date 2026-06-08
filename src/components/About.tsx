@@ -1,127 +1,123 @@
 'use client';
 
-const values = [
-  'Ethical Sourcing — Every emerald is conflict-free and traceable to its mine of origin.',
-  'No-Tarnish Guarantee — Our gold plating resists oxidation for a lifetime of wear.',
-  'Artisan Fair Pay — We ensure living wages and safe conditions for every crafts-person.',
-  'Heritage Techniques — Traditional kundan and meenakari methods preserved and honoured.',
+const features = [
+  { title: '100% Handmade', description: 'Every piece crafted by hand with love and skill — no machines, no shortcuts.' },
+  { title: 'Indian Tradition', description: 'Deeply rooted in Indian cultural heritage and traditional craftsmanship.' },
+  { title: 'MSME Registered', description: 'Officially registered, trusted, transparent, and committed to highest quality standards.' },
+  { title: 'Women Empowerment', description: 'Empowering 1000+ women with skill, income, and dignity.' },
+  { title: 'Premium Quality', description: 'Only the finest threads and materials ensuring durability and beauty.' },
+  { title: 'Made With Purpose', description: 'Every purchase supports local women artisans and keeps tradition alive.' },
 ];
 
 export default function About() {
   return (
-    <section id="about" className="py-20 md:py-28 bg-gray-50 dark:bg-dark relative overflow-hidden">
+    <section id="about" className="py-20 md:py-28 bg-purple-100 dark:bg-slate-950 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
-          <p className="font-accent text-red-500 text-xs tracking-[0.3em] uppercase mb-4">
-            About DHAGAJI 
+        {/* HEADER */}
+        <div className="text-center mb-16 md:mb-20">
+          <p className="font-accent text-purple-900 dark:text-amber-400 text-xs tracking-[0.3em] uppercase mb-4">
+            Our Story • Our Soul • Our Purpose
           </p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            A Legacy of <span className="text-red-shimmer">Grace</span>
+          <h2 className="font-display text-5xl md:text-6xl font-bold text-purple-900 dark:text-white mb-6">
+            About Us
           </h2>
-          <div className="divider-gold w-24 mx-auto mt-4" />
+          <div className="divider-gold w-32 mx-auto mt-6 h-1 bg-amber-500 dark:bg-amber-400"/>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left: Animated SVG Visual */}
-          <div className="relative flex items-center justify-center animate-fadeIn">
-            <div className="relative w-full max-w-[400px] mx-auto aspect-square">
-              {/* Rotating outer ring */}
-              <div className="absolute inset-0" style={{ animation: 'rotateRing 20s linear infinite' }}>
-                <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-                  <circle cx="200" cy="200" r="185" fill="none" stroke="#ef2a28" strokeWidth="1" strokeDasharray="4 6" opacity="0.5" />
-                  {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => {
-                    const rad = (angle * Math.PI) / 180;
-                    return (
-                      <circle
-                        key={i}
-                        cx={200 + 185 * Math.cos(rad)}
-                        cy={200 + 185 * Math.sin(rad)}
-                        r="4"
-                        fill="#ef2a28"
-                        opacity="0.8"
-                      />
-                    );
-                  })}
-                </svg>
-              </div>
-
-              {/* Static middle ring */}
-              <div className="absolute inset-[40px]">
-                <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-                  <circle cx="160" cy="160" r="140" fill="none" stroke="#ef2a28" strokeWidth="0.5" opacity="0.35" />
-                </svg>
-              </div>
-
-              {/* Emerald sphere */}
-              <div className="absolute inset-[80px] flex items-center justify-center"
-                style={{ animation: 'emeraldPulse 4s ease-in-out infinite' }}
-              >
-                <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-                  <defs>
-                    <radialGradient id="aboutEmerald" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stopColor="#10b981" />
-                      <stop offset="50%" stopColor="#065f46" />
-                      <stop offset="100%" stopColor="#022c22" />
-                    </radialGradient>
-                  </defs>
-                  <circle cx="120" cy="120" r="100" fill="url(#aboutEmerald)" opacity="0.9" />
-                  <circle cx="120" cy="120" r="100" fill="none" stroke="#ef2a28" strokeWidth="1.5" opacity="0.6" />
-                  <circle cx="120" cy="120" r="70" fill="none" stroke="#ef2a28" strokeWidth="0.5" opacity="0.3" />
-                  <circle cx="120" cy="120" r="40" fill="none" stroke="#ef2a28" strokeWidth="0.5" opacity="0.3" />
-                  <text x="120" y="124" textAnchor="middle" fill="#ff4444" fontFamily="Cinzel" fontSize="32" fontWeight="600">25</text>
-                  <text x="120" y="148" textAnchor="middle" fill="#ef2a28" fontFamily="Cinzel" fontSize="12" opacity="0.8">YEARS</text>
-                </svg>
-              </div>
-
-              {/* Floating stat badges */}
-              <div className="absolute top-2 left-0 animate-fadeIn delay-200">
-                <div className="bg-white/90 dark:bg-dark-card/90 backdrop-blur-sm border border-gray-200 dark:border-dark-border rounded-lg px-4 py-2">
-                  <div className="stat-value font-accent text-lg font-bold">500+</div>
-                  <div className="font-body text-gray-600 dark:text-gray-400 text-xs">Designs</div>
-                </div>
-              </div>
-              <div className="absolute bottom-2 right-0 animate-fadeIn delay-300">
-                <div className="bg-white/90 dark:bg-dark-card/90 backdrop-blur-sm border border-gray-200 dark:border-dark-border rounded-lg px-4 py-2">
-                  <div className="stat-value font-accent text-lg font-bold">15K+</div>
-                  <div className="font-body text-gray-600 dark:text-gray-400 text-xs">Customers</div>
-                </div>
-              </div>
-
-              {/* Sparkles */}
-              <div className="absolute top-[15%] right-[10%]" style={{ animation: 'sparkle 2.5s ease-in-out infinite' }}>
-                <svg width="12" height="12" viewBox="0 0 20 20" fill="#ff4444">
-                  <path d="M10 0L12.25 7.75L20 10L12.25 12.25L10 20L7.75 12.25L0 10L7.75 7.75L10 0Z" />
-                </svg>
-              </div>
-              <div className="absolute bottom-[20%] left-[8%]" style={{ animation: 'sparkle 3s ease-in-out infinite 0.5s' }}>
-                <svg width="10" height="10" viewBox="0 0 20 20" fill="#ef2a28">
-                  <path d="M10 0L12.25 7.75L20 10L12.25 12.25L10 20L7.75 12.25L0 10L7.75 7.75L10 0Z" />
-                </svg>
-              </div>
-            </div>
+        {/* MAIN STORY */}
+        <div className="max-w-4xl mx-auto mb-16 md:mb-20">
+          <p className="font-body text-lg text-gray-800 dark:text-gray-300 leading-relaxed mb-6">
+            <span className="font-bold text-purple-900 dark:text-purple-100">Dhagaji Creation</span> is a proud MSME registered, 100% handmade thread jewellery brand rooted in the heart of Indian tradition. Born in <span className="font-bold">Himmatnagar, Sabarkantha, Gujarat</span> — every piece we craft carries the soul of our culture, woven with love, skill, and deep purpose.
+          </p>
+          
+          <div className="bg-purple-200 dark:bg-purple-900 border-l-4 border-amber-500 dark:border-amber-400 p-6 md:p-8 rounded-lg mb-6">
+            <p className="font-body text-base md:text-lg text-gray-800 dark:text-gray-200">
+              We are more than a jewellery brand. <span className="font-bold">We are a movement</span> — empowering thousands of women around us by giving them a platform, a skill, and a dignified livelihood. From vibrant threads to stunning traditional designs, every creation is a celebration of Indian art, craftsmanship, and womanhood.
+            </p>
           </div>
 
-          {/* Right: Brand story */}
-          <div>
-            <p className="font-body text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-6">
-              For over twenty-five years, DHAGAJI  has been the name synonymous with exquisite emerald and gold bangdi craftsmanship. What began as a small family workshop in the Pink City has grown into a beloved brand trusted by brides across India and the diaspora.
-            </p>
-            <p className="font-body text-gray-600 dark:text-gray-400 text-lg leading-relaxed mb-8">
-              Every DHAGAJI  piece tells a story — of the artisan who shaped it, the stone that was perfectly cut, and the tradition that lives on through each generation of wearers.
-            </p>
+          <p className="font-body text-lg text-gray-800 dark:text-gray-300 leading-relaxed">
+            At Dhagaji Creation, we believe that <span className="font-bold">every thread tells a story</span> — a story of <span className="font-bold">culture, courage, and creativity</span>. We are committed to keeping the art of thread jewellery alive, one handcrafted piece at a time.
+          </p>
+        </div>
 
-            {/* Value checkmarks */}
-            <div className="space-y-3">
-              {values.map((v, i) => (
-                <div key={i} className="flex items-start gap-3 animate-slideIn" style={{ animationDelay: `${i * 0.1}s` }}>
-                  <svg width="20" height="20" viewBox="0 0 18 18" className="flex-shrink-0 mt-0.5">
-                    <circle cx="9" cy="9" r="9" fill="#ef2a28" />
-                    <path d="M5 9L8 12L13 6" stroke="#0a0a0a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  <span className="font-body text-gray-700 dark:text-gray-300 text-base">{v}</span>
-                </div>
-              ))}
+        {/* VISION & MISSION */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 mb-16 md:mb-20">
+          {/* VISION */}
+          <div className="bg-purple-900 dark:bg-purple-950 rounded-lg p-8 md:p-10 text-white">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-3xl">✦</span>
+              <h3 className="font-display text-3xl md:text-4xl font-bold text-amber-400">OUR VISION</h3>
             </div>
+            <div className="w-16 h-1 bg-amber-400 mb-6"/>
+            <p className="font-body text-base md:text-lg leading-relaxed text-gray-100">
+              To establish <span className="font-bold text-amber-400">Dhagaji Creation</span> as India's most trusted handcrafted thread jewellery brand — proudly carrying Indian traditional culture to every home, while empowering <span className="font-bold text-amber-400">1000+ women</span> through the timeless art of crafting.
+            </p>
+          </div>
+
+          {/* MISSION */}
+          <div className="border-2 border-amber-500 dark:border-amber-400 rounded-lg p-8 md:p-10 dark:bg-slate-800">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-3xl">✦</span>
+              <h3 className="font-display text-3xl md:text-4xl font-bold text-purple-900 dark:text-white">OUR MISSION</h3>
+            </div>
+            <div className="w-16 h-1 bg-amber-500 dark:bg-amber-400 mb-6"/>
+            <p className="font-body text-base md:text-lg leading-relaxed text-gray-800 dark:text-gray-300">
+              To manufacture and deliver authentic handmade thread jewellery that reflects the richness of Indian tradition — while building a powerful community of skilled women artisans who craft with <span className="font-bold">pride, passion, and purpose.</span>
+            </p>
+          </div>
+        </div>
+
+        {/* STATS */}
+        <div className="bg-purple-900 dark:bg-purple-950 rounded-lg p-8 md:p-12 mb-16 md:mb-20">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            {[
+              { number: '1000+', label: 'Women Empowered' },
+              { number: '100%', label: 'Handmade' },
+              { number: 'MSME', label: 'Registered' },
+              { number: 'Made', label: 'IN INDIA' },
+            ].map((stat, i) => (
+              <div key={i} className="text-center">
+                <p className="font-accent text-3xl md:text-4xl font-bold text-amber-400 mb-2">{stat.number}</p>
+                <p className="font-body text-xs md:text-sm text-gray-300 uppercase tracking-wider">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* WHY CHOOSE DHAGAJI */}
+        <div>
+          <div className="text-center mb-14">
+            <h3 className="font-display text-4xl md:text-5xl font-bold text-purple-900 dark:text-white mb-4">
+              Why Choose Dhagaji?
+            </h3>
+            <p className="font-accent text-purple-700 dark:text-amber-400 text-xs tracking-[0.3em] uppercase">
+              Reasons to Wear Our Tradition With Pride
+            </p>
+            <div className="divider-gold w-32 mx-auto mt-6 h-1 bg-amber-500 dark:bg-amber-400"/>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            {features.map((feature, i) => (
+              <div 
+                key={i} 
+                className="bg-white dark:bg-slate-800 rounded-lg p-6 md:p-8 border-l-4 border-amber-500 dark:border-amber-400 hover:shadow-lg transition-shadow"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center">
+                    <span className="text-2xl text-purple-900 dark:text-amber-400">✦</span>
+                  </div>
+                  <div>
+                    <h4 className="font-accent text-lg font-bold text-purple-900 dark:text-amber-400 mb-2">
+                      {feature.title}
+                    </h4>
+                    <p className="font-body text-sm text-gray-700 dark:text-gray-400">
+                      {feature.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

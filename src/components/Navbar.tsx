@@ -37,7 +37,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <a href="#" className={`font-accent text-xl md:text-2xl tracking-[0.25em] ${
-            theme === 'dark' ? 'text-red-shimmer' : 'text-red-500'
+            theme === 'dark' ? 'text-amber-400' : 'text-purple-900'
           }`}>
             DHAGAJI 
           </a>
@@ -50,8 +50,8 @@ export default function Navbar() {
                 href={link.href}
                 className={`font-accent text-xs tracking-[0.15em] transition-colors duration-300 uppercase ${
                   theme === 'dark'
-                    ? 'text-gray-300 hover:text-red-500'
-                    : 'text-gray-600 hover:text-red-500'
+                    ? 'text-gray-300 hover:text-amber-400'
+                    : 'text-gray-600 hover:text-purple-900'
                 }`}
               >
                 {link.label}
@@ -63,8 +63,8 @@ export default function Navbar() {
               onClick={toggleTheme}
               className={`p-2 rounded transition-all duration-300 ${
                 theme === 'dark'
-                  ? 'bg-red-500/20 text-red-500 hover:bg-red-500/30'
-                  : 'bg-red-100 text-red-500 hover:bg-red-200'
+                  ? 'bg-amber-400/20 text-amber-400 hover:bg-amber-400/30'
+                  : 'bg-purple-100 text-purple-900 hover:bg-purple-200'
               }`}
               aria-label="Toggle theme"
             >
@@ -77,7 +77,7 @@ export default function Navbar() {
 
             <a
               href="#contact"
-              className="btn-gold px-6 py-2.5 text-xs tracking-[0.15em] rounded"
+              className="px-6 py-2.5 text-xs tracking-[0.15em] rounded font-bold transition-all bg-purple-900 text-amber-400 border-2 border-amber-400 hover:bg-amber-400 hover:text-purple-900"
             >
               Enquire Now
             </a>
@@ -90,8 +90,8 @@ export default function Navbar() {
               onClick={toggleTheme}
               className={`p-2 rounded transition-all duration-300 ${
                 theme === 'dark'
-                  ? 'bg-red-500/20 text-red-500 hover:bg-red-500/30'
-                  : 'bg-red-100 text-red-500 hover:bg-red-200'
+                  ? 'bg-amber-400/20 text-amber-400 hover:bg-amber-400/30'
+                  : 'bg-purple-100 text-purple-900 hover:bg-purple-200'
               }`}
               aria-label="Toggle theme"
             >
@@ -119,11 +119,11 @@ export default function Navbar() {
       <div
         className={`md:hidden mobile-menu-enter ${
           theme === 'dark'
-            ? 'bg-dark-card/95'
+            ? 'bg-slate-900/95'
             : 'bg-white/95'
         } backdrop-blur-lg ${
           theme === 'dark'
-            ? 'border-dark-border'
+            ? 'border-slate-700'
             : 'border-gray-200'
         } border-t ${
           mobileOpen ? 'mobile-menu-open' : ''
@@ -137,8 +137,8 @@ export default function Navbar() {
               onClick={closeMobile}
               className={`font-accent text-sm tracking-[0.15em] transition-colors py-2 uppercase ${
                 theme === 'dark'
-                  ? 'text-gray-300 hover:text-red-500'
-                  : 'text-gray-600 hover:text-red-500'
+                  ? 'text-gray-300 hover:text-amber-400'
+                  : 'text-gray-600 hover:text-purple-900'
               }`}
             >
               {link.label}

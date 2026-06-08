@@ -5,8 +5,8 @@
 @tailwind utilities;
 
 :root {
-  --red: #ef2a28;
-  --black: #1a1a1a;
+  --purple: #813EB6;
+  --gold: #d4af37;
   --dark: #0a0a0a;
 }
 
@@ -21,17 +21,19 @@ html.light {
   --navbar-bg: rgba(255, 255, 255, 0.95);
   --card-bg: #f9fafb;
   --border-color: #e5e7eb;
-  --red-text: #ef2a28;
+  --primary-text: #813EB6;
+  --accent-text: #d4af37;
 }
 
 html.dark {
-  --bg-color: #0a0a0a;
+  --bg-color: #0f0f0f;
   --text-color: #f3f4f6;
-  --text-light: #9ca3af;
-  --navbar-bg: rgba(10, 10, 10, 0.95);
-  --card-bg: #141414;
-  --border-color: #2a2a2a;
-  --red-text: #ff4444;
+  --text-light: #d4af37;
+  --navbar-bg: rgba(15, 15, 15, 0.98);
+  --card-bg: #1a1a1a;
+  --border-color: #813EB6;
+  --primary-text: #d4af37;
+  --accent-text: #ffd700;
 }
 
 * {
@@ -71,8 +73,8 @@ body::after {
 }
 
 ::selection {
-  background: rgba(239, 42, 40, 0.3);
-  color: #ff4444;
+  background: rgba(129, 62, 182, 0.3);
+  color: #d4af37;
 }
 
 /* Dark mode scrollbar */
@@ -81,16 +83,16 @@ html.dark ::-webkit-scrollbar-track {
 }
 
 html.dark ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #ef2a28, #dc143c);
+  background: linear-gradient(180deg, #d4af37, #ffd700);
   border-radius: 4px;
 }
 
 html.dark ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #ff4444, #ef2a28);
+  background: linear-gradient(180deg, #ffd700, #d4af37);
 }
 
 html.dark {
-  scrollbar-color: #ef2a28 #0a0a0a;
+  scrollbar-color: #d4af37 #0a0a0a;
 }
 
 /* Light mode scrollbar */
@@ -99,16 +101,16 @@ html.light ::-webkit-scrollbar-track {
 }
 
 html.light ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #ef2a28, #dc143c);
+  background: linear-gradient(180deg, #813EB6, #d4af37);
   border-radius: 4px;
 }
 
 html.light ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #ff4444, #ef2a28);
+  background: linear-gradient(180deg, #d4af37, #813EB6);
 }
 
 html.light {
-  scrollbar-color: #ef2a28 #ffffff;
+  scrollbar-color: #813EB6 #ffffff;
 }
 
 /* Custom scrollbar */
@@ -116,9 +118,9 @@ html.light {
   width: 8px;
 }
 
-/* Red shimmer text */
+/* Purple and gold shimmer text */
 .text-red-shimmer {
-  background: linear-gradient(90deg, #ef2a28 0%, #ff4444 25%, #ef2a28 50%, #ff4444 75%, #ef2a28 100%);
+  background: linear-gradient(90deg, #813EB6 0%, #d4af37 25%, #813EB6 50%, #d4af37 75%, #813EB6 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -129,16 +131,16 @@ html.light {
 /* Gold divider line */
 .divider-gold {
   height: 1px;
-  background: linear-gradient(90deg, transparent, #ef2a28, transparent);
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
   border: none;
 }
 
 html.light .divider-gold {
-  background: linear-gradient(90deg, transparent, #ef2a28, transparent);
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
 }
 
 html.dark .divider-gold {
-  background: linear-gradient(90deg, transparent, #ef2a28, transparent);
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
 }
 
 /* Card glow on hover */
@@ -148,19 +150,19 @@ html.dark .divider-gold {
 
 html.light .card-glow:hover {
   transform: translateY(-4px);
-  box-shadow: 0 0 20px rgba(239, 42, 40, 0.2), 0 4px 15px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 20px rgba(107, 46, 127, 0.2), 0 4px 15px rgba(212, 175, 55, 0.2);
 }
 
 html.dark .card-glow:hover {
   transform: translateY(-4px);
-  box-shadow: 0 0 20px rgba(239, 42, 40, 0.3), 0 4px 15px rgba(26, 26, 26, 0.2);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.5), 0 4px 15px rgba(107, 46, 127, 0.3);
 }
 
-/* Red button with shimmer sweep */
+/* Purple button with gold shimmer */
 .btn-gold {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #ef2a28, #ff4444, #ef2a28);
+  background: linear-gradient(135deg, #4F1D74, #d4af37, #4F1D74);
   color: #ffffff;
   font-family: 'Cinzel', serif;
   font-weight: 600;
@@ -188,17 +190,17 @@ html.dark .card-glow:hover {
 
 .btn-gold:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(239, 42, 40, 0.5);
+  box-shadow: 0 4px 20px rgba(107, 46, 127, 0.5);
 }
 
-/* Red outline button */
+/* Gold outline button */
 .btn-gold-outline {
   position: relative;
   background: transparent;
-  color: #ef2a28;
+  color: #d4af37;
   font-family: 'Cinzel', serif;
   font-weight: 600;
-  border: 1px solid #ef2a28;
+  border: 1px solid #d4af37;
   cursor: pointer;
   transition: all 0.3s ease;
   z-index: 1;
@@ -212,7 +214,7 @@ html.dark .card-glow:hover {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(239, 42, 40, 0.15), transparent);
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.15), transparent);
   transition: left 0.6s ease-in-out;
   z-index: -1;
 }
@@ -222,9 +224,9 @@ html.dark .card-glow:hover {
 }
 
 .btn-gold-outline:hover {
-  border-color: #ff4444;
-  color: #ff4444;
-  box-shadow: 0 0 15px rgba(239, 42, 40, 0.3);
+  border-color: #ffd700;
+  color: #ffd700;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
 }
 
 /* Animation delay utilities */
@@ -312,32 +314,32 @@ html.dark .card-glow:hover {
 
 /* Navbar transition */
 .navbar-scrolled {
-  background: rgba(10, 10, 10, 0.95);
+  background: rgba(15, 15, 15, 0.95);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(239, 42, 40, 0.2);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
 }
 
 .navbar-scrolled-light {
   background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(239, 42, 40, 0.3);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
 }
 
 /* Light mode hamburger */
 html.light .hamburger-line {
-  background: #ef2a28;
+  background: #d4af37;
 }
 
 /* Dark mode hamburger */
 html.dark .hamburger-line {
-  background: #ef2a28;
+  background: #d4af37;
 }
 
 /* Hamburger */
 .hamburger-line {
   width: 24px;
   height: 2px;
-  background: #ef2a28;
+  background: #d4af37;
   transition: all 0.3s ease;
 }
 
@@ -372,8 +374,66 @@ html.light .mobile-menu-enter {
 }
 
 html.dark .mobile-menu-enter {
-  background: rgba(20, 20, 20, 0.95) !important;
-  border-color: #2a2a2a !important;
+  background: rgba(15, 15, 15, 0.98) !important;
+  border-color: #334155 !important;
+}
+
+/* Dark mode form inputs */
+html.dark input[type="text"],
+html.dark input[type="email"],
+html.dark input[type="tel"],
+html.dark textarea {
+  background-color: #1e293b;
+  border-color: #475569;
+  color: #f1f5f9;
+}
+
+html.dark input[type="text"]::placeholder,
+html.dark input[type="email"]::placeholder,
+html.dark input[type="tel"]::placeholder,
+html.dark textarea::placeholder {
+  color: #94a3b8;
+}
+
+html.dark input[type="text"]:focus,
+html.dark input[type="email"]:focus,
+html.dark input[type="tel"]:focus,
+html.dark textarea:focus {
+  border-color: #d4af37;
+  background-color: #0f172a;
+}
+
+/* Dark mode button styles */
+html.dark button {
+  transition: all 0.3s ease;
+}
+
+/* Dark mode heading colors */
+html.dark h1, html.dark h2, html.dark h3, html.dark h4, html.dark h5, html.dark h6 {
+  color: #f1f5f9;
+}
+
+/* SVG colors in dark mode */
+html.dark svg {
+  color: inherit;
+}
+
+/* Ensure all gold/amber colors work in dark mode */
+.text-gold-500 {
+  color: #d4af37;
+}
+
+html.dark .text-gold-500 {
+  color: #fbbf24;
+}
+
+/* Icon colors */
+html.dark .text-amber-400 {
+  color: #fbbf24;
+}
+
+html.dark .text-amber-500 {
+  color: #f59e0b;
 }
 
 /* Filter tabs */
@@ -390,7 +450,7 @@ html.dark .mobile-menu-enter {
   transform: translateX(-50%);
   width: 0;
   height: 2px;
-  background: #ef2a28;
+  background: #d4af37;
   transition: width 0.3s ease;
 }
 
@@ -400,7 +460,7 @@ html.dark .mobile-menu-enter {
 }
 
 .filter-tab.active {
-  color: #ef2a28;
+  color: #d4af37;
 }
 
 /* Review fade transition */
@@ -431,13 +491,13 @@ html.dark .mobile-menu-enter {
 }
 
 .process-step:hover {
-  border-color: #ef2a28;
-  box-shadow: 0 0 12px rgba(239, 42, 40, 0.15);
+  border-color: #d4af37;
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.15);
 }
 
 /* Stat value */
 .stat-value {
-  background: linear-gradient(135deg, #ef2a28, #ff4444);
+  background: linear-gradient(135deg, #d4af37, #e5c158);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -445,8 +505,8 @@ html.dark .mobile-menu-enter {
 
 /* Input focus */
 .input-gold:focus {
-  border-color: #ef2a28;
-  box-shadow: 0 0 0 1px #ef2a28, 0 0 10px rgba(239, 42, 40, 0.15);
+  border-color: #d4af37;
+  box-shadow: 0 0 0 1px #d4af37, 0 0 10px rgba(212, 175, 55, 0.15);
   outline: none;
 }
 

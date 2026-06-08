@@ -22,12 +22,12 @@ const SparkleIcon = ({ size }: { size: number }) => (
   <svg width={size} height={size} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       d="M10 0L12.25 7.75L20 10L12.25 12.25L10 20L7.75 12.25L0 10L7.75 7.75L10 0Z"
-      fill="url(#redGrad)"
+      fill="url(#goldGrad)"
     />
     <defs>
-      <linearGradient id="redGrad" x1="0" y1="0" x2="20" y2="20">
-        <stop offset="0%" stopColor="#ef2a28" />
-        <stop offset="100%" stopColor="#ff4444" />
+      <linearGradient id="goldGrad" x1="0" y1="0" x2="20" y2="20">
+        <stop offset="0%" stopColor="#d4af37" />
+        <stop offset="100%" stopColor="#ffd700" />
       </linearGradient>
     </defs>
   </svg>
@@ -71,13 +71,6 @@ export default function Hero({
   // Pick correct image
   const bgImage = isMobile && mobileImage ? mobileImage : desktopImage;
 
-  // Scrim — light mode: NO white overlay, just a very subtle dark-bottom gradient
-  // so image stays vivid and text stays readable
-  const scrim =
-    theme === 'dark'
-      ? 'linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 40%, rgba(0,0,0,0.72) 100%)'
-      : 'linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.04) 40%, rgba(0,0,0,0.45) 100%)';
-
   return (
     <section
       className="relative overflow-hidden"
@@ -99,45 +92,11 @@ export default function Hero({
         }}
       />
 
-      {/* ── SCRIM — no white tint, just contrast ── */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          zIndex: 1,
-          background: scrim,
-        }}
-      />
 
-      {/* ── Red accent glow ── */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          zIndex: 2,
-          background: 'radial-gradient(ellipse at center, rgba(239,42,40,0.07) 0%, transparent 65%)',
-          pointerEvents: 'none',
-        }}
-      />
 
-      {/* ── Parallax orb (desktop only) ── */}
-      {!isMobile && (
-        <div
-          ref={orbRef}
-          style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: 600,
-            height: 600,
-            borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(239,42,40,0.08) 0%, transparent 70%)',
-            pointerEvents: 'none',
-            zIndex: 2,
-          }}
-        />
-      )}
+
+
+
 
       {/* ── Decorative geometric lines ── */}
       <div
@@ -151,11 +110,11 @@ export default function Hero({
         }}
         dangerouslySetInnerHTML={{
           __html: `<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-            <circle cx="600" cy="400" r="300" fill="none" stroke="#ef2a28" stroke-width="0.5" stroke-dasharray="8 8"/>
-            <circle cx="600" cy="400" r="280" fill="none" stroke="#ef2a28" stroke-width="0.3"/>
-            <polygon points="600,150 950,650 250,650" fill="none" stroke="#ef2a28" stroke-width="0.5" opacity="0.4"/>
-            <line x1="600" y1="50" x2="600" y2="750" stroke="#ef2a28" stroke-width="0.3" opacity="0.2"/>
-            <line x1="100" y1="400" x2="1100" y2="400" stroke="#ef2a28" stroke-width="0.3" opacity="0.2"/>
+            <circle cx="600" cy="400" r="300" fill="none" stroke="#d4af37" stroke-width="0.5" stroke-dasharray="8 8"/>
+            <circle cx="600" cy="400" r="280" fill="none" stroke="#d4af37" stroke-width="0.3"/>
+            <polygon points="600,150 950,650 250,650" fill="none" stroke="#d4af37" stroke-width="0.5" opacity="0.4"/>
+            <line x1="600" y1="50" x2="600" y2="750" stroke="#d4af37" stroke-width="0.3" opacity="0.2"/>
+            <line x1="100" y1="400" x2="1100" y2="400" stroke="#d4af37" stroke-width="0.3" opacity="0.2"/>
           </svg>`,
         }}
       />
@@ -197,7 +156,7 @@ export default function Hero({
           <p
             className="font-accent animate-fadeIn"
             style={{
-              color: '#ef2a28',
+              color: '#d4af37',
               fontSize: isMobile ? '0.6rem' : '0.7rem',
               letterSpacing: '0.3em',
               textTransform: 'uppercase',
@@ -205,34 +164,48 @@ export default function Hero({
               textShadow: '0 1px 6px rgba(0,0,0,0.5)',
             }}
           >
-            Handcrafted Heritage Since 1998
+            ✦ MSME Registered Brand ✦
           </p>
 
           <h1
             className="font-display animate-fadeIn"
             style={{
-              fontSize: isMobile ? 'clamp(3.5rem, 20vw, 5.5rem)' : 'clamp(4rem, 13vw, 9rem)',
+              fontSize: isMobile ? 'clamp(2.5rem, 18vw, 4.5rem)' : 'clamp(3.5rem, 12vw, 7.5rem)',
               fontWeight: 700,
               lineHeight: 1.0,
-              marginBottom: '1rem',
-              color: '#ef2a28',
-              textShadow: '0 2px 40px rgba(239,42,40,0.4), 0 1px 0 rgba(0,0,0,0.3)',
+              marginBottom: '0.5rem',
+              color: '#ffffff',
+              textShadow: '0 2px 40px rgba(107,46,127,0.4), 0 1px 0 rgba(0,0,0,0.3)',
             }}
           >
             DHAGAJI
           </h1>
 
+          <h2
+            className="font-accent animate-fadeIn"
+            style={{
+              fontSize: isMobile ? '1.1rem' : '1.5rem',
+              fontWeight: 600,
+              marginBottom: '1.5rem',
+              color: '#d4af37',
+              textShadow: '0 2px 30px rgba(107,46,127,0.3)',
+              letterSpacing: '0.05em',
+            }}
+          >
+            CREATION
+          </h2>
+
           <p
             className="font-body animate-fadeIn"
             style={{
               fontStyle: 'italic',
-              fontSize: isMobile ? 'clamp(0.9rem, 4vw, 1.1rem)' : 'clamp(1rem, 2.5vw, 1.6rem)',
+              fontSize: isMobile ? 'clamp(0.85rem, 3.5vw, 1rem)' : 'clamp(0.95rem, 2.2vw, 1.4rem)',
               marginBottom: '2rem',
               color: '#f3f4f6',
               textShadow: '0 1px 10px rgba(0,0,0,0.6)',
             }}
           >
-            Adorning India&apos;s Brides with Emerald &amp; Gold for Generations
+            Threads of India • 100% Handmade • Women Empowered
           </p>
 
           <div
@@ -247,29 +220,55 @@ export default function Hero({
           >
             <a
               href="#collection"
-              className="btn-gold"
               style={{
                 padding: isMobile ? '0.75rem 1.75rem' : '0.875rem 2.5rem',
                 fontSize: '0.8rem',
                 letterSpacing: '0.15em',
                 borderRadius: '0.25rem',
                 display: 'inline-block',
+                backgroundColor: '#6b2e7f',
+                color: '#d4af37',
+                textDecoration: 'none',
+                border: '2px solid #d4af37',
+                fontWeight: 600,
+                transition: 'all 0.3s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#d4af37';
+                e.currentTarget.style.color = '#4F1D74';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#4F1D74';
+                e.currentTarget.style.color = '#d4af37';
               }}
             >
               Explore Collection
             </a>
             <a
               href="#craftsmanship"
-              className="btn-gold-outline"
               style={{
                 padding: isMobile ? '0.75rem 1.75rem' : '0.875rem 2.5rem',
                 fontSize: '0.8rem',
                 letterSpacing: '0.15em',
                 borderRadius: '0.25rem',
                 display: 'inline-block',
+                backgroundColor: 'transparent',
+                color: '#d4af37',
+                textDecoration: 'none',
+                border: '2px solid #d4af37',
+                fontWeight: 600,
+                transition: 'all 0.3s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#d4af37';
+                e.currentTarget.style.color = '#4F1D74';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent';
+                e.currentTarget.style.color = '#d4af37';
               }}
             >
-              Our Craft
+              About Us
             </a>
           </div>
         </div>
@@ -295,20 +294,20 @@ export default function Hero({
             }}
           >
             {[
-              { value: '500+', label: 'Designs' },
-              { value: '15K+', label: 'Customers' },
-              { value: '25+', label: 'Years' },
+              { value: '1000+', label: 'Women Empowered' },
+              { value: '100%', label: 'Handmade' },
+              { value: 'MSME', label: 'Registered' },
             ].map((stat) => (
               <div key={stat.label} style={{ textAlign: 'center' }}>
                 <div
                   className="font-accent"
                   style={{
-                    fontSize: isMobile ? 'clamp(1.4rem, 6vw, 1.8rem)' : 'clamp(1.75rem, 4vw, 2.5rem)',
+                    fontSize: isMobile ? 'clamp(1.2rem, 5vw, 1.6rem)' : 'clamp(1.5rem, 3.5vw, 2.2rem)',
                     fontWeight: 700,
-                    color: '#ef2a28',
+                    color: '#d4af37',
                     lineHeight: 1,
                     marginBottom: '0.2rem',
-                    textShadow: '0 2px 20px rgba(239,42,40,0.4)',
+                    textShadow: '0 2px 20px rgba(107,46,127,0.4)',
                   }}
                 >
                   {stat.value}
@@ -316,8 +315,8 @@ export default function Hero({
                 <div
                   className="font-body"
                   style={{
-                    fontSize: isMobile ? '0.55rem' : '0.65rem',
-                    letterSpacing: '0.15em',
+                    fontSize: isMobile ? '0.5rem' : '0.6rem',
+                    letterSpacing: '0.12em',
                     textTransform: 'uppercase',
                     color: '#e5e7eb',
                     textShadow: '0 1px 4px rgba(0,0,0,0.6)',
@@ -350,7 +349,7 @@ export default function Hero({
           style={{
             fontSize: '0.5rem',
             letterSpacing: '0.2em',
-            color: '#ef2a28',
+            color: '#d4af37',
             textTransform: 'uppercase',
           }}
         >
@@ -360,7 +359,7 @@ export default function Hero({
           style={{
             width: 1,
             height: 24,
-            background: 'linear-gradient(to bottom, #ef2a28, transparent)',
+            background: 'linear-gradient(to bottom, #d4af37, transparent)',
             animation: 'scrollIndicator 1.5s ease-in-out infinite',
           }}
         />
